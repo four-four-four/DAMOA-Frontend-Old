@@ -16,8 +16,6 @@
           구글
         </div>
       </div>
-    <article>
-    </article>
   </section>
   <!-- <footer></footer> -->
 </template>
