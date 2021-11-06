@@ -1,10 +1,6 @@
 <template>
-  <!-- <header></header> -->
-  <!-- <section id="register" onload="emailDuplCheck()"> -->
   <section id="register">
-      <!-- <form method="POST" action="emailRegister"> -->
       <label for="useremail">이메일</label>
-      <!-- <input type="email" name="" id="useremail"> -->
       <input type="email" name="" id="useremail" placeholder="이메일을 입력하세요." @blur="emailDuplCheck">
       <span class="badge badge-danger mt-1" v-if="isEmailEmpty">{{alert_empty}}</span>
       <span class="badge badge-danger mt-1" v-else-if="!isEmailOk">이메일 형식이 다릅니다.</span>
@@ -27,7 +23,7 @@
       <input type="text" name="email" id="usernickname" placeholder="닉네임을 입력하세요." @blur="nicknameDuplCheck">
       <span class="badge badge-danger mt-1" v-if="isNickEmpty">{{alert_empty}}</span>
       <span class="badge badge-danger mt-1" v-else-if="isNickDupl">이미 사용중인 닉네임입니다.</span>
-      <span class="badge badge-danger mt-1" v-else-if="isNickDupl==false">사용할 수 있는 닉네임입니다.</span>
+      <span class="badge badge-danger mt-1" v-else-if="isNickDupl===false">사용할 수 있는 닉네임입니다.</span>
       <br>
       <div style="height: 50px"></div>
       <input type="checkbox" v-model="selectAll" @click="select()" /> 모두 동의합니다.
@@ -45,54 +41,62 @@
 </template>
 <script>
 export default {
-  name:'',
+  name: '',
 
   components: {},
 
   data() {
     return {
       // 이용약관 동의 내용
-        options: [
-          {title: "DAMOA 이용약관 동의(필수)", content: "약관 내용 1", index: "CK01"},
-          {title: "개인정보 수집 및 이용 동의(필수)", content: "약관 내용 2", index: "CK02"},
-          {title: "위치정보 이용약관 동의(선택)", content: "약관 내용 3", index: "CK03"},
-          {title: "프로모션 정보 수신 동의(선택)", content: "약관 내용 4", index: "CK04"}
-        ],
-        selected: [],
-        selectAll: false,
+      options: [
+        {title: "DAMOA 이용약관 동의(필수)", content: "약관 내용 1", index: "CK01"},
+        {title: "개인정보 수집 및 이용 동의(필수)", content: "약관 내용 2", index: "CK02"},
+        {title: "위치정보 이용약관 동의(선택)", content: "약관 내용 3", index: "CK03"},
+        {title: "프로모션 정보 수신 동의(선택)", content: "약관 내용 4", index: "CK04"}
+      ],
+      selected: [],
+      selectAll: false,
 
-        alert_empty: '',
+      alert_empty: '',
 
-        // availableEmail: true,
-        isEmailOk: true,
-        isEmailEmpty: true,
-        isEmailDupl: true,
-        
-        // passEmail: false,
-        isPasswordEmpty: true,
-        isPasswordCheckEmpty: true,
-        availablePassword: true,
-        passPassword: false,
-        duplPassword: false,
-        notDuplPassword: false,
+      // availableEmail: true,
+      isEmailOk: true,
+      isEmailEmpty: true,
+      isEmailDupl: true,
 
-        // nickname 변수
-        isNickEmpty: true,
-        isNickDupl: null,
+      // passEmail: false,
+      isPasswordEmpty: true,
+      isPasswordCheckEmpty: true,
+      availablePassword: true,
+      passPassword: false,
+      duplPassword: false,
+      notDuplPassword: false,
 
-        urlEmailDuplCheck : 'https://c4463872-d5df-4f02-ad5c-cf7d329eeac2.mock.pstmn.io/emailDuplCheck',
-        urlNickDuplCheck : 'https://c4463872-d5df-4f02-ad5c-cf7d329eeac2.mock.pstmn.io/nickDuplCheck'
+      // nickname 변수
+      isNickEmpty: true,
+      isNickDupl: null,
+
+      urlEmailDuplCheck: 'https://c4463872-d5df-4f02-ad5c-cf7d329eeac2.mock.pstmn.io/emailDuplCheck',
+      urlNickDuplCheck: 'https://c4463872-d5df-4f02-ad5c-cf7d329eeac2.mock.pstmn.io/nickDuplCheck'
     };
   },
 
-  beforeCreate() {},
-  created() {},
-  beforeMount() {},
-  mounted(){},
-  beforeUpdate() {},
-  updated() {},
-  beforeUnmount() {},
-  unmounted() {}, 
+  beforeCreate() {
+  },
+  created() {
+  },
+  beforeMount() {
+  },
+  mounted() {
+  },
+  beforeUpdate() {
+  },
+  updated() {
+  },
+  beforeUnmount() {
+  },
+  unmounted() {
+  },
   methods: {
     select() {
       this.selected = [];
@@ -102,10 +106,10 @@ export default {
         }
       }
     },
-    updateCheckall: function(){
-      if(this.options.length == this.selected.length){
+    updateCheckall: function () {
+      if (this.options.length == this.selected.length) {
         this.selectAll = true;
-      }else{
+      } else {
         this.selectAll = false;
       }
     },
@@ -119,41 +123,40 @@ export default {
       this.isEmailOk = true;
       if (userEmail.length > 0) {
         this.isEmailEmpty = false;
-  
+
         // 정규식
         const reg_email = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
-  
+
         // 이메일 형식이 맞으면
         if (reg_email.test(userEmail)) {
           const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: userEmail })
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({email: userEmail})
           };
           fetch(this.urlEmailDuplCheck, requestOptions)
-            .then(async response => {
-              const data = await response.json();
-              this.isEmailDupl = data.isDupl;
+              .then(async response => {
+                const data = await response.json();
+                this.isEmailDupl = data.isDupl;
 
-              // check for error response
-              if (!response.ok) {
-                // get error message from body or default to response status
-                const error = (data && data.message) || response.status;
-                return Promise.reject(error);
-              }
-            })
-            .catch(error => {
-              this.errorMessage = error;
-              console.error('There was an error!', error);
-            });
+                // check for error response
+                if (!response.ok) {
+                  // get error message from body or default to response status
+                  const error = (data && data.message) || response.status;
+                  return Promise.reject(error);
+                }
+              })
+              .catch(error => {
+                this.errorMessage = error;
+                console.error('There was an error!', error);
+              });
         }
         // 이메일 형식이 안맞으면
         else {
           this.isEmailOk = false;
           this.isEmailDupl = true;
         }
-      }
-      else {
+      } else {
         this.isEmailEmpty = true;
         this.isEmailDupl = true;
       }
@@ -180,8 +183,7 @@ export default {
         if (count < -2 || userPassword.length < 8) this.availablePassword = false;
         else this.availablePassword = true;
         this.passPassword = this.availablePassword
-      }
-      else {
+      } else {
         this.isPasswordEmpty = true;
       }
     },
@@ -214,11 +216,11 @@ export default {
         // 서버에서 체크하고 값을 받아오는 코드
         // ...
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nickname: nickname })
-          };
-          fetch(this.urlNickDuplCheck, requestOptions)
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({nickname: nickname})
+        };
+        fetch(this.urlNickDuplCheck, requestOptions)
             .then(async response => {
               const data = await response.json();
               this.isNickDupl = data.isDupl;
@@ -235,42 +237,41 @@ export default {
               console.error('There was an error!', error);
             });
         // ...
-      }
-      else {
+      } else {
         this.isNickEmpty = true;
-              this.isNickDupl = null;
+        this.isNickDupl = null;
       }
     },
     totalCheck() {
       if (
-        !this.isEmailDupl && this.duplPassword &&
-        !this.isNickDupl &&
-        this.selected.includes("CK01") && this.selected.includes("CK02")
-        ) {
-          // 이메일, 비밀번호,  닉네임, 약관동의
-          const data = {
-            email: document.getElementById("useremail").value,
-            password: document.getElementById("userpw").value,
-            nickname: document.getElementById("usernickname").value,
-            agree: this.selected
-          };
-          // data.email = document.getElementById("useremail").value;
-          // data.password = document.getElementById("userpw").value;
-          // data.nickname = document.getElementById("usernickname").value;
-          // data.agree = this.selected;
-          console.log(data);
-          // postman 테스트 해서
-          // const response = await axios.post("url", data);
+          !this.isEmailDupl && this.duplPassword &&
+          !this.isNickDupl &&
+          this.selected.includes("CK01") && this.selected.includes("CK02")
+      ) {
+        // 이메일, 비밀번호,  닉네임, 약관동의
+        const data = {
+          email: document.getElementById("useremail").value,
+          password: document.getElementById("userpw").value,
+          nickname: document.getElementById("usernickname").value,
+          agree: this.selected
+        };
+        // data.email = document.getElementById("useremail").value;
+        // data.password = document.getElementById("userpw").value;
+        // data.nickname = document.getElementById("usernickname").value;
+        // data.agree = this.selected;
+        console.log(data);
+        // postman 테스트 해서
+        // const response = await axios.post("url", data);
 
-          // 성공
+        // 성공
 
-          // 실패
-          alert('성공');
-      }
-      else{
+        // 실패
+        alert('성공');
+      } else {
         this.alert_empty = '필수 정보입니다.'
       }
     }
   }
 }
+
 </script>

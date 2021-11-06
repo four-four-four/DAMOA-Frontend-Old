@@ -6,8 +6,16 @@
     <router-link to="/emailregister">Email Register</router-link>
   </div>
   <router-view/>
+  <Header/>
 </template>
-
+<script>
+import Header from './components/layout/Header.vue';
+export default {
+  components: {
+    Header
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
