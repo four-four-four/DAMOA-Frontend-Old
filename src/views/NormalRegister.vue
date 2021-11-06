@@ -1,4 +1,62 @@
 <template>
+  <!-- 요구사항 01. 회원가입 폼 구현 -->
+  <form action="" method="post">
+    <div>
+      <label for="id">아이디</label>
+      <input type="email" name="id" id="id" v-model="id" v-on:keyup="checkId" placeholder="이메일을 입력하세요.">
+      <span>{{ checkMsgId }}</span>
+    </div>
+    <div>
+      <label for="pw">비밀번호</label>
+      <input type="password" name="password" id="pw" v-model="pw" v-on:keyup="checkPw" placeholder="비밀번호를 입력하세요.">
+      <span>{{ checkMsgPw }}</span>
+    </div>
+    <div>
+      <label for="samePw">비밀번호 확인</label>
+      <input type="password" id="samePw" v-model="samePw" v-on:keyup="checkSamePw" placeholder="비밀번호를 입력하세요.">
+      <span>{{ checkMsgSamePw }}</span>
+    </div>
+    <div>
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name" v-model="name" v-on:keyup="checkName" placeholder="이름을 입력하세요." >
+      <span>{{ checkMsgName }}</span>
+    </div>
+    <div>
+      <label for="nickname">별명</label>
+      <input type="text" name="nickname" id="nickname" v-model="nickname" v-on:keyup="checkNickname" placeholder="별명을 입력하세요." >
+      <span>{{ checkMsgNickname }}</span>
+    </div>
+    <div>
+      <label for="gender">성별</label>
+      <input type="radio" name="gender" id="gender">남자
+      <input type="radio" name="gender" id="gender">여자
+    </div>
+    <div>
+      <label for="birth">생년월일</label>
+      <input type="date" name="birth" id="birth">
+    </div>
+    <div>
+      <label for="job">직업</label>
+      <select name="job" id="job">
+        <option v-for="(job, index) in jobs" :key="index">{{ job }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="terms">약관 전체 동의</label>
+      <input type="checkbox" v-model="isCheckAll" v-on:click="checkAll">
+      <div v-for="(term, index) in terms" :key="index">
+        <input type="checkbox" name="terms" v-bind:id="`term${index}`">
+        <label v-bind:for="`term${index}`">{{ term.title }}</label>
+        <textarea readonly v-bind:value="term.content" cols="30" rows="10"></textarea>
+      </div>
+    </div>
+    <input type="submit" value="회원가입" v-on:click="register">
+  </form>
+
+  <hr>
+
+  <!-- 구버전 -->
+  <!--
   <section id="register">
       <label for="useremail">이메일</label>
       <input type="email" name="" id="useremail" placeholder="이메일을 입력하세요." @blur="emailDuplCheck">
@@ -37,67 +95,165 @@
       <div style="height: 50px"></div>
       <button @click="totalCheck">회원가입</button>
   </section>
-  <!-- <footer></footer> -->
+  -->
 </template>
 <script>
 export default {
-  name: '',
-
-  components: {},
-
   data() {
     return {
-      // 이용약관 동의 내용
-      options: [
-        {title: "DAMOA 이용약관 동의(필수)", content: "약관 내용 1", index: "CK01"},
-        {title: "개인정보 수집 및 이용 동의(필수)", content: "약관 내용 2", index: "CK02"},
-        {title: "위치정보 이용약관 동의(선택)", content: "약관 내용 3", index: "CK03"},
-        {title: "프로모션 정보 수신 동의(선택)", content: "약관 내용 4", index: "CK04"}
+      checkMsgId: '', // 아이디 검사 결과 메시지
+      checkMsgPw: '', // 비밀번호 검사 결과 메시지
+      checkMsgSamePw: '', // 동일 비밀번호 검사 결과 메시지
+      checkMsgName: '', // 이름 검사 결과 메시지
+      jobs: ["직장인", "대학생", "고등학생", "취준생", "자영업자"],
+      terms: [
+        {
+          title: 'DAMOA 서비스 이용약관 동의 (필수)',
+          content: 'DAMOA 서비스 약관',
+          code: 'TERM01'
+        },
+        {
+          title: '개인정보 수집 및 이용 동의 (필수)',
+          content: '개인정보 수집 및 이용 약관',
+          code: 'TERM02'
+        },
+        {
+          title: '위치정보 수집 및 이용 동의 (선택)',
+          content: '위치정보 수집 및 이용 약관',
+          code: 'TERM03'
+        },
+        {
+          title: '프로모션 정보 수신 동의 (선택)',
+          content: '프로모션 정보 수신 약관',
+          code: 'TERM04'
+        }
       ],
-      selected: [],
-      selectAll: false,
+      id: '',
+      pw: '',
+      samePw: '',
+      name: '',
+      nickname: '',
 
-      alert_empty: '',
+      // 아이디, 비밀번호 정규표현식
+      regExpId: /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i,
 
-      // availableEmail: true,
-      isEmailOk: true,
-      isEmailEmpty: true,
-      isEmailDupl: true,
+      URL_ID_DUPL_CHECK: 'https://c4463872-d5df-4f02-ad5c-cf7d329eeac2.mock.pstmn.io/checkIdDupl',
 
-      // passEmail: false,
-      isPasswordEmpty: true,
-      isPasswordCheckEmpty: true,
-      availablePassword: true,
-      passPassword: false,
-      duplPassword: false,
-      notDuplPassword: false,
+      // 구버전
+      // 이용약관 동의 내용
+      // options: [
+      //   {title: "DAMOA 이용약관 동의(필수)", content: "약관 내용 1", index: "CK01"},
+      //   {title: "개인정보 수집 및 이용 동의(필수)", content: "약관 내용 2", index: "CK02"},
+      //   {title: "위치정보 이용약관 동의(선택)", content: "약관 내용 3", index: "CK03"},
+      //   {title: "프로모션 정보 수신 동의(선택)", content: "약관 내용 4", index: "CK04"}
+      // ],
+      // selected: [],
+      // selectAll: false,
 
-      // nickname 변수
-      isNickEmpty: true,
-      isNickDupl: null,
+      // alert_empty: '',
 
-      urlEmailDuplCheck: 'https://c4463872-d5df-4f02-ad5c-cf7d329eeac2.mock.pstmn.io/emailDuplCheck',
-      urlNickDuplCheck: 'https://c4463872-d5df-4f02-ad5c-cf7d329eeac2.mock.pstmn.io/nickDuplCheck'
+      // // availableEmail: true,
+      // isEmailOk: true,
+      // isEmailEmpty: true,
+      // isEmailDupl: true,
+
+      // // passEmail: false,
+      // isPasswordEmpty: true,
+      // isPasswordCheckEmpty: true,
+      // availablePassword: true,
+      // passPassword: false,
+      // duplPassword: false,
+      // notDuplPassword: false,
+
+      // // nickname 변수
+      // isNickEmpty: true,
+      // isNickDupl: null,
+
+      // urlEmailDuplCheck: 'https://c4463872-d5df-4f02-ad5c-cf7d329eeac2.mock.pstmn.io/emailDuplCheck',
+      // urlNickDuplCheck: 'https://c4463872-d5df-4f02-ad5c-cf7d329eeac2.mock.pstmn.io/nickDuplCheck'
     };
   },
-
-  beforeCreate() {
-  },
-  created() {
-  },
-  beforeMount() {
-  },
-  mounted() {
-  },
-  beforeUpdate() {
-  },
-  updated() {
-  },
-  beforeUnmount() {
-  },
-  unmounted() {
-  },
   methods: {
+    // 요구사항 02, 03
+    checkId() {
+      // 요구사항 02. 아이디 중복 검사
+      if (this.regExpId.test(this.id)) {
+        // 요구사항 03. 아이디 중복 검사
+        const requestOptions = {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        };
+        fetch(this.URL_ID_DUPL_CHECK + '?id=' + this.id, requestOptions)
+            .then(async response => {
+              const data = await response.json();
+              if (data.isIdDupl) {
+                this.checkMsgId = '이미 사용중인 아이디입니다.';
+              }
+              else {
+                this.checkMsgId = '사용하실 수 있는 아이디입니다.';
+              }
+
+              // check for error response
+              if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+              }
+            })
+            .catch(error => {
+              this.errorMessage = error;
+              console.error('There was an error!', error);
+            });
+      }
+      else {
+        this.checkMsgId = '이메일 형식에 맞게 입력해주세요.'
+      }
+    },
+    // 요구사항 05. 비밀번호 유효성 검사
+    checkPw() {
+      // 비밀번호 길이 검사
+      this.samePw = '';
+      this.checkSamePw = '';
+      if (this.pw.length < 8) {
+        this.checkMsgPw = '비밀번호는 8자 이상 입력해주세요.'
+      }
+      else {
+        /**
+         * 비밀번호 패턴 검사
+         * 영대문자, 영소문자, 숫자, 특수문자 중 3가지 이상 포함 필요
+         */
+        
+        // 비밀번호 가져오기
+        const tmpPw = this.pw;
+
+        // 영대문자, 영소문자, 숫자, 특수문자 체크
+        const cEngCheck = tmpPw.search(/[A-Z]/g)
+        const sEngCheck = tmpPw.search(/[a-z]/g);
+        const numCheck = tmpPw.search(/[0-9]/g);
+        const speCheck = tmpPw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+        let patternCnt = 0;
+        if (numCheck >= 0) ++patternCnt;
+        if (sEngCheck >= 0) ++patternCnt;
+        if (cEngCheck >= 0) ++patternCnt;
+        if (speCheck >= 0) ++patternCnt;
+
+        if (patternCnt >= 3) this.checkMsgPw = '사용하실 수 있는 비밀번호입니다.'
+        else this.checkMsgPw = '비밀번호는 영대문자, 영소문자, 숫자, 특수문자 중 세 가지 이상 포함하여 입력해주세요.'
+      }
+    },
+    // 요구사항 6. 동일 비밀번호 확인
+    checkSamePw() {
+      if (this.samePw.length >= 8) {
+        if (this.pw === this.samePw) {
+          this.checkMsgSamePw = '비밀번호가 일치합니다.';
+        }
+        else {
+          this.checkMsgSamePw = '동일한 비밀번호를 입력해주세요.';
+        }
+      }
+    },
+
     select() {
       this.selected = [];
       if (!this.selectAll) {
