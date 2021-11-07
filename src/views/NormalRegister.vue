@@ -242,7 +242,7 @@ export default {
         else this.checkMsgPw = '비밀번호는 영대문자, 영소문자, 숫자, 특수문자 중 세 가지 이상 포함하여 입력해주세요.'
       }
     },
-    // 요구사항 6. 동일 비밀번호 확인
+    // 요구사항 06. 동일 비밀번호 확인
     checkSamePw() {
       if (this.samePw.length >= 8) {
         if (this.pw === this.samePw) {
@@ -251,6 +251,36 @@ export default {
         else {
           this.checkMsgSamePw = '동일한 비밀번호를 입력해주세요.';
         }
+      }
+    },
+    // 요구사항 07. 이름 유효성 검사
+    checkName() {
+      const tmpName = this.name;
+      const cEngCheck = tmpName.search(/[A-Z]/g)
+      const sEngCheck = tmpName.search(/[a-z]/g);
+      const numCheck = tmpName.search(/[0-9]/g);
+      const speCheck = tmpName.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+      if (cEngCheck + sEngCheck + numCheck + speCheck > -4) {
+        this.checkMsgName = '이름은 한글만 입력해주세요.';
+      }
+      else {
+        this.checkMsgName = '';
+      }
+    },
+    // 요구사항 08, 09
+    checkNickname() {
+      // 요구사항 08. 별명 유효성 검사
+      const tmpNickname = this.nickname;
+      const speCheck = tmpNickname.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+      if (speCheck > -1) {
+        this.checkMsgNickname = '별명에 특수문자를 사용할 수 없습니다.';
+      }
+      else {
+        // 요구사항 09. 별명 중복 검사
+        /*
+        서버 통신 필요
+        */
+        this.checkMsgNickname = '사용하실 수 있는 별명입니다.';
       }
     },
 
