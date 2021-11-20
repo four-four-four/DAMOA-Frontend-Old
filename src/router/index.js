@@ -1,7 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Register from '../views/Register.vue'
-import NormalRegister from '../views/NormalRegister.vue'
+
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -10,28 +11,27 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/category',
+    name: 'Category',
+    component: () => import("@/views/Category.vue"),
   },
   {
-    path: '/register',
-    name: 'Register',
-    component: Register
+    path: '/detail',
+    name: 'Detail',
+    component: () => import("@/views/Detail.vue"),
   },
   {
-    path: '/normalregister',
-    name: 'NormalRegister',
-    component: NormalRegister
+    path: '/authors',
+    name: 'Authors',
+    component: () => import("@/views/Authors.vue"),
   }
 ]
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+const router = new VueRouter({
+  routes,
+  scrollBehavior() {
+    document.getElementById('app').scrollIntoView();
+  }
 })
 
 export default router
