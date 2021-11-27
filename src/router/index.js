@@ -16,9 +16,9 @@ const routes = [
     component: () => import("@/views/User.vue"),
     children: [
       {
-        path: "/login",
-        name: "Login",
-        component: () => import("@/components/user/Login.vue"),
+        path: "/register/email",
+        name: "EmailRegister",
+        component: () => import("@/components/user/EmailRegister.vue"),
       },
     ],
   },
