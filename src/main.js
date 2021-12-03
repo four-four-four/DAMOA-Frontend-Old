@@ -1,12 +1,21 @@
-import Vue from 'vue'
-import App from './App.vue'
-import vuetify from './plugins/vuetify';
-import router from './router'
+import Vue from "vue";
+import App from "./App.vue";
+import vuetify from "./plugins/vuetify";
+import router from "./router";
+import Vuesax from "vuesax";
+import AsyncComputed from "vue-async-computed";
 
-Vue.config.productionTip = false
+import "vuesax/dist/vuesax.css";
+import "boxicons/css/boxicons.min.css";
 
+Vue.config.productionTip = false;
+Vue.use(Vuesax, {
+  // options here
+});
 new Vue({
   vuetify,
   router,
-  render: h => h(App)
-}).$mount('#app')
+  Vuesax,
+  AsyncComputed,
+  render: (h) => h(App),
+}).$mount("#app");

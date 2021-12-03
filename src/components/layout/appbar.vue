@@ -81,6 +81,19 @@
             <v-btn
               v-for="(item, i) in btnItems"
               :key="i"
+              text
+              class="text-capitalize"
+              :to="item.to"
+              exact-active-class="accent--text"
+              exact
+              >{{ item.title }}</v-btn
+            >
+          </v-col>
+
+          <!-- <v-col class="text-right" v-if="$vuetify.breakpoint.smAndUp">
+            <v-btn
+              v-for="(item, i) in btnItems"
+              :key="i"
               :outlined="item.outlined"
               :to="item.to"
               :href="item.href"
@@ -91,7 +104,7 @@
               <v-icon left>{{ item.icon }}</v-icon>
               {{ item.text }}
             </v-btn>
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-container>
     </v-app-bar>
@@ -102,15 +115,6 @@
 export default {
   data: () => ({
     drawer: null,
-    btnItems: [
-      {
-        text: "Free Download",
-        href: "https://github.com/AGDholo/giraffe",
-        target: "_black",
-        color: "primary",
-        icon: "mdi-download",
-      },
-    ],
     barItems: [
       {
         title: "Home",
@@ -127,6 +131,12 @@ export default {
       {
         title: "Authors",
         to: "/authors",
+      },
+    ],
+    btnItems: [
+      {
+        title: "Sign Up",
+        to: { name: "EmailSignUp" },
       },
     ],
   }),
