@@ -5,6 +5,7 @@ import router from "./router";
 import Vuesax from "vuesax";
 
 import "vuesax/dist/vuesax.css";
+import "boxicons/css/boxicons.min.css";
 
 Vue.config.productionTip = false;
 Vue.use(Vuesax, {
