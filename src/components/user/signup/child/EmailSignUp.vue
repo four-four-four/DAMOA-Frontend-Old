@@ -1,55 +1,77 @@
 <template>
-  <v-container>
-    <v-form>
+  <div class="grid">
+    <vs-row justify="center">
       <!-- email -->
       <div class="center content-inputs">
         <vs-input
+          primary
           type="email"
           v-model="email"
-          v-on:blur="chkEmail"
           placeholder="이메일을 입력해주세요."
-        />
-        <span v-bind:class="chkEmailResult ? 'true' : 'false'">{{
-          chkMsgEmail
-        }}</span>
+        >
+          <template #icon>
+            <i class="bx bx-user"></i>
+          </template>
+          <template v-if="validEmail == 1" #message-success>
+            사용 가능한 이메일입니다.
+          </template>
+          <template
+            v-else-if="validEmail == -1 && email !== ''"
+            #message-danger
+          >
+            이메일 형식이 올바르지 않습니다.
+          </template>
+          <template
+            v-else-if="validEmail == -2 && email !== ''"
+            #message-danger
+          >
+            이미 사용 중인 이메일입니다.
+          </template>
+        </vs-input>
       </div>
-      <!-- password -->
-      <div class="center content-inputs">
-        <vs-input
-          type="password"
-          v-model="pw"
-          v-on:blur="chkPw"
-          placeholder="비밀번호를 입력해주세요."
-        />
-        <span v-bind:class="chkPwResult ? 'true' : 'false'">{{
-          chkMsgPw
-        }}</span>
-      </div>
-      <div class="center content-inputs">
-        <vs-input
-          type="password"
-          v-model="rePw"
-          v-on:blur="chkRePw"
-          placeholder="위 비밀번호와 동일하게 입력해주세요."
-        />
-        <span v-bind:class="chkRePwResult ? 'true' : 'false'">{{
-          chkMsgRePw
-        }}</span>
-      </div>
-      <!-- nickname -->
-      <div class="center content-inputs">
-        <vs-input
-          type="text"
-          v-model="nickname"
-          v-on:blur="chkNickname"
-          placeholder="닉네임을 입력해주세요."
-        />
-        <span v-bind:class="chkNicknameResult ? 'true' : 'false'">{{
-          chkMsgNickname
-        }}</span>
-      </div>
-    </v-form>
-  </v-container>
+    </vs-row>
+
+    <!-- password -->
+    <vs-row justify="center">
+      <vs-input
+        label="비밀번호"
+        type="password"
+        v-model="pw"
+        v-on:blur="chkPw"
+        placeholder="비밀번호를 입력해주세요."
+      />
+      <span v-bind:class="chkPwResult ? 'true' : 'false'">{{ chkMsgPw }}</span>
+    </vs-row>
+
+    <br />
+    <br />
+    <br />
+    <div class="center content-inputs">
+      <vs-input
+        label="비밀번호 재확인"
+        type="password"
+        v-model="rePw"
+        v-on:blur="chkRePw"
+        placeholder="비밀번호를 다시 입력해주세요."
+      />
+      <span v-bind:class="chkRePwResult ? 'true' : 'false'">{{
+        chkMsgRePw
+      }}</span>
+    </div>
+    <!-- nickname -->
+    <div class="center content-inputs">
+      <vs-input
+        label="닉네임"
+        type="text"
+        v-model="nickname"
+        v-on:blur="chkNickname"
+        placeholder="닉네임을 입력해주세요."
+      />
+      <span v-bind:class="chkNicknameResult ? 'true' : 'false'">{{
+        chkMsgNickname
+      }}</span>
+    </div>
+  </div>
 </template>
 <script>
 import http from "@/util/http-common.js";
@@ -59,10 +81,10 @@ export default {
     return {
       // email
       email: "",
-      chkMsgEmail: "",
-      regExpEmail:
-        /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i,
-      chkEmailResult: false,
+      validEmail: 0,
+      // chkMsgEmail: "",
+      regExpEmail: /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/,
+      // chkEmailResult: false,
 
       // password
       pw: "",
@@ -82,31 +104,26 @@ export default {
       api: "/user2",
     };
   },
-  methods: {
-    chkEmail() {
+  watch: {
+    email() {
       const email = this.email;
-      if (email.length === 0) {
-        this.chkMsgEmail = "";
-        return;
-      } else if (this.regExpEmail.test(email)) {
-        // 요구사항 03. 아이디 중복 검사
-
+      if (!email) this.validEmail = 0;
+      else if (!this.regExpEmail.test(email)) this.validEmail = -1;
+      else {
         http
           .get(`${this.api}/checkEmailDupl/${email}`)
           .then((response) => {
-            const result = response.data.data;
-            if (result) {
-              this.chkMsgEmail = "이미 사용중인 이메일입니다.";
-            } else {
-              this.chkMsgEmail = "사용할 수 있는 이메일입니다.";
-            }
-            this.chkEmailResult = result;
+            if (response.data.data) this.validEmail = -2;
+            else this.validEmail = 1;
           })
-          .catch((error) => console.log(error));
-      } else {
-        this.chkMsgEmail = "이메일 형식에 맞게 입력해주세요.";
+          .catch((error) => {
+            console.log(error);
+            this.validEmail = -1;
+          });
       }
     },
+  },
+  methods: {
     chkPw() {
       const pw = this.pw;
       // 비밀번호 길이 검사
