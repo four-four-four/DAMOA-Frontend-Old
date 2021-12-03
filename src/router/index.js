@@ -1,6 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/views/Home.vue";
+import Home from "../views/Home.vue";
+
+import User from "@/views/User.vue";
+import SignUp from "@/components/user/signup/SignUp.vue";
+import EmailSignUp from "@/components/user/signup/child/EmailSignUp.vue";
 
 Vue.use(VueRouter);
 
@@ -13,12 +17,19 @@ const routes = [
   {
     path: "/user",
     name: "User",
-    component: () => import("@/views/User.vue"),
+    component: User,
     children: [
       {
-        path: "/register/email",
-        name: "EmailRegister",
-        component: () => import("@/components/user/EmailRegister.vue"),
+        path: "signup",
+        name: "SignUp",
+        component: SignUp,
+        children: [
+          {
+            path: "email",
+            name: "EmailSignUp",
+            component: EmailSignUp,
+          },
+        ],
       },
     ],
   },
