@@ -136,7 +136,7 @@ export default {
     btnItems: [
       {
         title: "Sign Up",
-        to: { name: "EmailRegister" },
+        to: { name: "EmailSignUp" },
       },
     ],
   }),
