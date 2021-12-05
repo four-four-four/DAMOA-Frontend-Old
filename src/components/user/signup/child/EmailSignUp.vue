@@ -131,23 +131,19 @@ export default {
       // email
       email: "",
       validEmail: 0,
-      // chkMsgEmail: "",
       regExpEmail: /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/,
-      // chkEmailResult: false,
 
       // password
       pw: "",
-      chkMsgPw: "",
-      chkPwResult: false,
+      validPw: 0,
 
+      // password check
       rePw: "",
-      chkMsgRePw: "",
-      chkRePwResult: false,
+      validRePw: 0,
 
       // nickname
       nickname: "",
-      chkMsgNickname: "",
-      chkNicknameResult: false,
+      validNickname: 0,
 
       // api
       api: "/user2",
