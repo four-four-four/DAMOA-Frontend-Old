@@ -153,7 +153,7 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                v-model="date"
+                v-model="birthDate"
                 label="Birthday date"
                 prepend-icon="mdi-calendar"
                 readonly
@@ -162,7 +162,7 @@
               ></v-text-field>
             </template>
             <v-date-picker
-              v-model="date"
+              v-model="birthDate"
               :active-picker.sync="activePicker"
               :max="
                 new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
