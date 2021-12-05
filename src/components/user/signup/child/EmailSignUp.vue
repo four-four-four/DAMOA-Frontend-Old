@@ -373,6 +373,7 @@ export default {
   methods: {
     checkTotalTerm() {
       if (this.totalTerm) {
+        this.checkTerms = [];
         this.terms.forEach((term) => {
           this.checkTerms.push(term.code);
         });
