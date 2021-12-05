@@ -1,125 +1,138 @@
 <template>
   <div class="grid">
-    <!-- email -->
-    <vs-row justify="center">
-      <div class="center content-inputs">
-        <vs-input
-          primary
-          type="email"
-          v-model="email"
-          placeholder="이메일을 입력해주세요."
-        >
-          <template #icon>
-            <i class="bx bx-user"></i>
-          </template>
-          <template v-if="validEmail == 1" #message-success>
-            사용 가능한 이메일입니다.
-          </template>
-          <template
-            v-else-if="validEmail == -1 && email !== ''"
-            #message-danger
+    <vs-card align="center">
+      <template #title>
+        <h3>E-mail Sign Up</h3>
+      </template>
+      <template #text>
+        <!-- email -->
+        <vs-row justify="center">
+          <div class="center content-inputs">
+            <vs-input
+              primary
+              type="email"
+              v-model="email"
+              placeholder="이메일을 입력해주세요."
+            >
+              <template #icon>
+                <i class="bx bx-user"></i>
+              </template>
+              <template v-if="validEmail == 1" #message-success>
+                사용 가능한 이메일입니다.
+              </template>
+              <template
+                v-else-if="validEmail == -1 && email !== ''"
+                #message-danger
+              >
+                이메일 형식이 올바르지 않습니다.
+              </template>
+              <template
+                v-else-if="validEmail == -2 && email !== ''"
+                #message-danger
+              >
+                이미 사용 중인 이메일입니다.
+              </template>
+            </vs-input>
+          </div>
+        </vs-row>
+        <br />
+
+        <!-- password -->
+        <vs-row justify="center">
+          <vs-input
+            primary
+            type="password"
+            v-model="pw"
+            placeholder="비밀번호를 입력해주세요."
           >
-            이메일 형식이 올바르지 않습니다.
-          </template>
-          <template
-            v-else-if="validEmail == -2 && email !== ''"
-            #message-danger
+            <template #icon>
+              <i class="bx bx-lock-open-alt"></i>
+            </template>
+            <template v-if="validPw == 1" #message-success>
+              사용 가능한 비밀번호입니다.
+            </template>
+            <template v-else-if="validPw == -1 && pw !== ''" #message-danger>
+              8자 이상 20자 이하 입력해주세요.
+            </template>
+            <template v-else-if="validPw == -2 && pw !== ''" #message-danger>
+              영대문자, 영소문자, 숫자, 특수문자 중 세 가지 이상 포함하여
+              입력해주세요.
+            </template>
+          </vs-input>
+        </vs-row>
+        <br />
+
+        <!-- password check -->
+        <vs-row justify="center">
+          <vs-input
+            primary
+            type="password"
+            v-model="rePw"
+            placeholder="비밀번호를 입력해주세요."
           >
-            이미 사용 중인 이메일입니다.
-          </template>
-        </vs-input>
-      </div>
-    </vs-row>
+            <template #icon>
+              <i class="bx bx-lock-open-alt"></i>
+            </template>
+            <template v-if="validRePw == 1" #message-success>
+              위 비밀번호화 일치합니다.
+            </template>
+            <template
+              v-else-if="validRePw == -1 && rePw !== ''"
+              #message-danger
+            >
+              위 비밀번호와 일치하지 않습니다.
+            </template>
+          </vs-input>
+        </vs-row>
+        <br />
 
-    <!-- password -->
-    <vs-row justify="center">
-      <vs-input
-        primary
-        type="password"
-        v-model="pw"
-        placeholder="비밀번호를 입력해주세요."
-      >
-        <template #icon>
-          <i class="bx bx-lock-open-alt"></i>
-        </template>
-        <template v-if="validPw == 1" #message-success>
-          사용 가능한 비밀번호입니다.
-        </template>
-        <template v-else-if="validPw == -1 && pw !== ''" #message-danger>
-          8자 이상 20자 이하 입력해주세요.
-        </template>
-        <template v-else-if="validPw == -2 && pw !== ''" #message-danger>
-          영대문자, 영소문자, 숫자, 특수문자 중 세 가지 이상 포함하여
-          입력해주세요.
-        </template>
-      </vs-input>
-    </vs-row>
+        <!-- nickname -->
+        <vs-row justify="center">
+          <vs-input
+            primary
+            type="text"
+            v-model="nickname"
+            placeholder="닉네임을 입력해주세요."
+          >
+            <template #icon>
+              <i class="bx bx-smile"></i>
+            </template>
+            <template v-if="validNickname == 1" #message-success>
+              사용 가능한 닉네임입니다.
+            </template>
+            <template
+              v-else-if="validNickname == -1 && nickname !== ''"
+              #message-danger
+            >
+              4자 이상 10자 이하로 입력해주세요.
+            </template>
+            <template
+              v-else-if="validNickname == -2 && nickname !== ''"
+              #message-danger
+            >
+              특수문자를 사용할 수 없습니다.
+            </template>
+            <template
+              v-else-if="validNickname == -3 && nickname !== ''"
+              #message-danger
+            >
+              한글 자음 또는 모음을 사용할 수 없습니다.
+            </template>
+            <template
+              v-else-if="validNickname == -4 && nickname !== ''"
+              #message-danger
+            >
+              이미 사용중인 닉네임입니다.
+            </template>
+            <template
+              v-else-if="validNickname == -5 && nickname !== ''"
+              #message-danger
+            >
+            </template>
+          </vs-input>
+        </vs-row>
+        <br />
 
-    <!-- password check -->
-    <vs-row justify="center">
-      <vs-input
-        primary
-        type="password"
-        v-model="rePw"
-        placeholder="비밀번호를 다시 입력해주세요."
-      >
-        <template #icon>
-          <i class="bx bx-lock-open-alt"></i>
-        </template>
-        <template v-if="validRePw == 1" #message-success>
-          위 비밀번호화 일치합니다.
-        </template>
-        <template v-else-if="validRePw == -1 && rePw !== ''" #message-danger>
-          위 비밀번호와 일치하지 않습니다.
-        </template>
-      </vs-input>
-    </vs-row>
-
-    <!-- nickname -->
-    <vs-row justify="center">
-      <vs-input
-        primary
-        type="text"
-        v-model="nickname"
-        placeholder="닉네임을 입력해주세요."
-      >
-        <template #icon>
-          <i class="bx bx-smile"></i>
-        </template>
-        <template v-if="validNickname == 1" #message-success>
-          사용 가능한 닉네임입니다.
-        </template>
-        <template
-          v-else-if="validNickname == -1 && nickname !== ''"
-          #message-danger
-        >
-          4자 이상 10자 이하로 입력해주세요.
-        </template>
-        <template
-          v-else-if="validNickname == -2 && nickname !== ''"
-          #message-danger
-        >
-          특수문자를 사용할 수 없습니다.
-        </template>
-        <template
-          v-else-if="validNickname == -3 && nickname !== ''"
-          #message-danger
-        >
-          한글 자음 또는 모음을 사용할 수 없습니다.
-        </template>
-        <template
-          v-else-if="validNickname == -4 && nickname !== ''"
-          #message-danger
-        >
-          이미 사용중인 닉네임입니다.
-        </template>
-        <template
-          v-else-if="validNickname == -5 && nickname !== ''"
-          #message-danger
-        >
-        </template>
-      </vs-input>
-    </vs-row>
         <!-- gender -->
         <vs-row justify="center">
           <h4>성별&nbsp;&nbsp;&nbsp;</h4>
@@ -128,34 +141,36 @@
         </vs-row>
         <br />
 
-    <!-- terms agree -->
-    <vs-row justify="center">
-      <vs-checkbox success v-model="totalTerm" @change="checkTotalTerm">
-        이용약관 전체 동의
-      </vs-checkbox>
-    </vs-row>
-    <div v-for="(term, index) in terms" :key="index">
-      <vs-row justify="center">
-        <vs-checkbox
-          name="terms"
-          success
-          :val="term.code"
-          @change="checkTerm"
-          v-model="checkTerms"
-        >
-          {{ term.title }}
-        </vs-checkbox>
-      </vs-row>
-      <vs-row justify="center">
-        <textarea
-          style="border: 1px solid; font-size: 3px"
-          readonly
-          :value="term.content"
-          cols="50"
-          rows="3"
-        />
-      </vs-row>
-    </div>
+        <!-- terms agree -->
+        <vs-row justify="center">
+          <vs-checkbox success v-model="totalTerm" @change="checkTotalTerm">
+            이용약관 전체 동의
+          </vs-checkbox>
+        </vs-row>
+        <div v-for="(term, index) in terms" :key="index">
+          <vs-row justify="center">
+            <vs-checkbox
+              name="terms"
+              success
+              :val="term.code"
+              @change="checkTerm"
+              v-model="checkTerms"
+            >
+              {{ term.title }}
+            </vs-checkbox>
+          </vs-row>
+          <vs-row justify="center">
+            <textarea
+              style="border: 1px solid; font-size: 3px"
+              readonly
+              :value="term.content"
+              cols="50"
+              rows="3"
+            />
+          </vs-row>
+        </div>
+      </template>
+    </vs-card>
   </div>
 </template>
 <script>
@@ -180,6 +195,9 @@ export default {
       // nickname
       nickname: "",
       validNickname: 0,
+
+      // gender
+      gender: "",
 
       // terms
       totalTerm: false,
