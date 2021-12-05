@@ -284,6 +284,20 @@ export default {
       }
     },
   },
-  methods: {},
+  methods: {
+    checkTotalTerm() {
+      if (this.totalTerm) {
+        this.terms.forEach((term) => {
+          this.checkTerms.push(term.code);
+        });
+      } else {
+        this.checkTerms = [];
+      }
+    },
+    checkTerm() {
+      if (this.checkTerms.length === this.terms.length) this.totalTerm = true;
+      else this.totalTerm = false;
+    },
+  },
 };
 </script>
