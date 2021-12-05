@@ -143,9 +143,6 @@
 
         <!-- birthday  -->
         <vs-row justify="center">
-          <div class="mb-6">
-            Active picker: <code>{{ activePicker || "null" }}</code>
-          </div>
           <v-menu
             ref="menu"
             v-model="menu"
