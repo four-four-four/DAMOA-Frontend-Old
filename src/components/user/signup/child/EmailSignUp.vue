@@ -55,21 +55,26 @@
       </vs-input>
     </vs-row>
 
-    <br />
-    <br />
-    <br />
-    <div class="center content-inputs">
+    <!-- password check -->
+    <vs-row justify="center">
       <vs-input
-        label="비밀번호 재확인"
+        primary
         type="password"
         v-model="rePw"
-        v-on:blur="chkRePw"
         placeholder="비밀번호를 다시 입력해주세요."
-      />
-      <span v-bind:class="chkRePwResult ? 'true' : 'false'">{{
-        chkMsgRePw
-      }}</span>
-    </div>
+      >
+        <template #icon>
+          <i class="bx bx-lock-open-alt"></i>
+        </template>
+        <template v-if="validRePw == 1" #message-success>
+          위 비밀번호화 일치합니다.
+        </template>
+        <template v-else-if="validRePw == -1 && rePw !== ''" #message-danger>
+          위 비밀번호와 일치하지 않습니다.
+        </template>
+      </vs-input>
+    </vs-row>
+
     <!-- nickname -->
     <div class="center content-inputs">
       <vs-input
