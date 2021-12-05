@@ -135,7 +135,7 @@
 
         <!-- gender -->
         <vs-row justify="center">
-          <h4>성별&nbsp;&nbsp;&nbsp;</h4>
+          <h4 style="margin-right">성별</h4>
           <vs-radio v-model="gender" val="male"> 남자 </vs-radio>
           <vs-radio v-model="gender" val="female"> 여자 </vs-radio>
         </vs-row>
@@ -387,8 +387,7 @@ export default {
       }
     },
     checkTerm() {
-      if (this.checkTerms.length === this.terms.length) this.totalTerm = true;
-      else this.totalTerm = false;
+      this.totalTerm = this.checkTerms.length === this.terms.length;
     },
     save(date) {
       this.$refs.menu.save(date);
