@@ -142,6 +142,7 @@
         <br />
 
         <!-- birthday  -->
+        <!-- birthdate  -->
         <vs-row justify="center">
           <v-menu
             ref="menu"
