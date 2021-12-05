@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
+    <!-- email -->
     <vs-row justify="center">
-      <!-- email -->
       <div class="center content-inputs">
         <vs-input
           primary
@@ -34,13 +34,25 @@
     <!-- password -->
     <vs-row justify="center">
       <vs-input
-        label="비밀번호"
+        primary
         type="password"
         v-model="pw"
-        v-on:blur="chkPw"
         placeholder="비밀번호를 입력해주세요."
-      />
-      <span v-bind:class="chkPwResult ? 'true' : 'false'">{{ chkMsgPw }}</span>
+      >
+        <template #icon>
+          <i class="bx bx-lock-open-alt"></i>
+        </template>
+        <template v-if="validPw == 1" #message-success>
+          사용 가능한 비밀번호입니다.
+        </template>
+        <template v-else-if="validPw == -1 && pw !== ''" #message-danger>
+          8자 이상 20자 이하 입력해주세요.
+        </template>
+        <template v-else-if="validPw == -2 && pw !== ''" #message-danger>
+          영대문자, 영소문자, 숫자, 특수문자 중 세 가지 이상 포함하여
+          입력해주세요.
+        </template>
+      </vs-input>
     </vs-row>
 
     <br />
