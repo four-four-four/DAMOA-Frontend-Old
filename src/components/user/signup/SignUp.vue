@@ -1,13 +1,18 @@
 <template>
   <div>
-    <h2>회원가입</h2>
-    <router-view></router-view>
+    <h3 align="center">Sign Up</h3>
+    <email-sign-up />
   </div>
 </template>
 
 <script>
+import EmailSignUp from "@/components/user/signup/child/EmailSignUp.vue";
+
 export default {
-  name: "DamoaFrontendSignup",
+  name: "Signup",
+  components: {
+    EmailSignUp,
+  },
   data() {
     return {};
   },
