@@ -145,6 +145,32 @@ export default {
       nickname: "",
       validNickname: 0,
 
+      // terms
+      totalTerm: false,
+      checkTerms: [],
+      terms: [
+        {
+          title: "DAMOA 서비스 이용약관 동의 (필수)",
+          content: "DAMOA 서비스 약관",
+          code: "term01",
+        },
+        {
+          title: "개인정보 수집 및 이용 동의 (필수)",
+          content: "개인정보 수집 및 이용 약관",
+          code: "term02",
+        },
+        {
+          title: "위치정보 수집 및 이용 동의 (선택)",
+          content: "위치정보 수집 및 이용 약관",
+          code: "term03",
+        },
+        {
+          title: "프로모션 정보 수신 동의 (선택)",
+          content: "프로모션 정보 수신 약관",
+          code: "term04",
+        },
+      ],
+
       // api
       api: "/user2",
     };
