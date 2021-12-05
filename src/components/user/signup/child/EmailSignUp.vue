@@ -135,9 +135,15 @@
 
         <!-- gender -->
         <vs-row justify="center">
-          <h4 style="margin-right">성별</h4>
-          <vs-radio v-model="gender" val="male"> 남자 </vs-radio>
-          <vs-radio v-model="gender" val="female"> 여자 </vs-radio>
+          <vs-col w="2">
+            <h4>성별</h4>
+          </vs-col>
+          <vs-col w="3">
+            <vs-radio v-model="gender" val="male"> 남자 </vs-radio>
+          </vs-col>
+          <vs-col w="3">
+            <vs-radio v-model="gender" val="female"> 여자 </vs-radio>
+          </vs-col>
         </vs-row>
         <br />
 
