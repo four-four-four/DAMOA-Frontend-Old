@@ -219,6 +219,14 @@
             />
           </vs-row>
         </div>
+        <br />
+
+        <!-- register -->
+        <vs-row justify="center">
+          <vs-button block @click="register">
+            <i class="bx bxs-paint-roll"></i> 회원가입하기
+          </vs-button>
+        </vs-row>
       </template>
     </vs-card>
   </div>
@@ -384,6 +392,50 @@ export default {
     },
     save(date) {
       this.$refs.menu.save(date);
+    },
+    register() {
+      if (this.validEmail !== 1) {
+        alert("이메일을 입력해주세요.");
+        return;
+      } else if (this.validPw !== 1) {
+        alert("비밀번호를 입력해주세요.");
+        return;
+      } else if (this.validNickname !== 1) {
+        alert("닉네임을 입력해주세요.");
+        return;
+      }
+
+      if (
+        this.checkTerms.indexOf("term01") < 0 ||
+        this.checkTerms.indexOf("term02") < 0
+      ) {
+        alert("필수 약관을 동의해주세요.");
+        return;
+      }
+
+      http
+        .post(`${this.api}/emailRegister`, {
+          email: this.email,
+          password: this.pw,
+          nickname: this.nickname,
+          gender: this.gender,
+          birthDate: this.birthDate,
+          job: this.job,
+          terms: this.checkTerms,
+        })
+        .then((response) => {
+          if (response.data.data) {
+            alert("회원가입 성공!");
+            this.$router.push({
+              name: "Home",
+            });
+          }
+          console.log(response);
+        })
+        .catch((error) => {
+          alert("회원가입 실패!");
+          console.log(error);
+        });
     },
   },
 };
