@@ -247,11 +247,8 @@ export default {
       validNickname: 0,
 
       // gender
-      gender: "",
+      gender: null,
 
-      // birthdady
-      activePicker: null,
-      date: null,
       // birthdate
       birthDate: null,
       menu: false,
