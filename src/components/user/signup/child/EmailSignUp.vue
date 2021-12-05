@@ -366,9 +366,6 @@ export default {
         }
       }
     },
-    menu(val) {
-      val && setTimeout(() => (this.activePicker = "YEAR"));
-    },
   },
   methods: {
     checkTotalTerm() {
