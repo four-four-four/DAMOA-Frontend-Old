@@ -141,7 +141,6 @@
         </vs-row>
         <br />
 
-        <!-- birthday  -->
         <!-- birthdate  -->
         <vs-row justify="center">
           <v-menu
@@ -238,6 +237,8 @@ export default {
       // birthdady
       activePicker: null,
       date: null,
+      // birthdate
+      birthDate: null,
       menu: false,
 
       // terms
