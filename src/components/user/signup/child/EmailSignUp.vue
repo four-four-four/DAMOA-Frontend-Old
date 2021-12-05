@@ -120,6 +120,13 @@
         </template>
       </vs-input>
     </vs-row>
+        <!-- gender -->
+        <vs-row justify="center">
+          <h4>성별&nbsp;&nbsp;&nbsp;</h4>
+          <vs-radio v-model="gender" val="male"> 남자 </vs-radio>
+          <vs-radio v-model="gender" val="female"> 여자 </vs-radio>
+        </vs-row>
+        <br />
 
     <!-- terms agree -->
     <vs-row justify="center">
