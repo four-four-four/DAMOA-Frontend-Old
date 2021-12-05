@@ -176,6 +176,21 @@
         </vs-row>
         <br />
 
+        <!-- job -->
+        <vs-row justify="center">
+          <vs-select placeholder="직업을 선택해주세요." v-model="job">
+            <vs-option
+              v-for="(name, index) in jobs"
+              :key="index"
+              :label="name"
+              :value="name"
+            >
+              {{ name }}
+            </vs-option>
+          </vs-select>
+        </vs-row>
+        <br />
+
         <!-- terms agree -->
         <vs-row justify="center">
           <vs-checkbox success v-model="totalTerm" @change="checkTotalTerm">
@@ -240,6 +255,10 @@ export default {
       // birthdate
       birthDate: null,
       menu: false,
+
+      // job
+      jobs: ["회사원", "학생", "자영업자", "전문직", "기타"],
+      job: null,
 
       // terms
       totalTerm: false,
