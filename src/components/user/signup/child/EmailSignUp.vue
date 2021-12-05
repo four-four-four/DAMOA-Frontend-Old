@@ -163,101 +163,72 @@ export default {
           })
           .catch((error) => {
             console.log(error);
-            this.validEmail = -1;
+            alert(error);
+            this.validEmail = 0;
           });
       }
     },
-  },
-  methods: {
-    chkPw() {
+    pw() {
       const pw = this.pw;
-      // 비밀번호 길이 검사
-      this.samePw = "";
-      this.checkSamePw = "";
-      if (pw.length === 0) {
-        this.chkMsgPw = "";
-        return;
+      if (!pw) this.validPw = 0;
+      // 길이 제한 확인
+      else if (!(8 <= pw.length && pw.length <= 20)) this.validPw = -1;
+      else {
+        // 영대문자, 영소문자, 숫자, 특수문자 체크
+        const cEngCheck = pw.search(/[A-Z]/g);
+        const sEngCheck = pw.search(/[a-z]/g);
+        const numCheck = pw.search(/[0-9]/g);
+        const speCheck = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+        let patternCnt = 0;
+        if (numCheck >= 0) ++patternCnt;
+        if (sEngCheck >= 0) ++patternCnt;
+        if (cEngCheck >= 0) ++patternCnt;
+        if (speCheck >= 0) ++patternCnt;
+
+        if (patternCnt >= 3) this.validPw = 1;
+        else this.validPw = -2;
       }
-      if (8 > pw.length || pw.length > 20) {
-        this.chkMsgPw = "비밀번호는 8자 이상 20자 이하로 입력해주세요.";
-        return;
-      }
 
-      /**
-       * 비밀번호 패턴 검사
-       * 영대문자, 영소문자, 숫자, 특수문자 중 3가지 이상 포함 필요
-       */
-
-      // 영대문자, 영소문자, 숫자, 특수문자 체크
-      const cEngCheck = pw.search(/[A-Z]/g);
-      const sEngCheck = pw.search(/[a-z]/g);
-      const numCheck = pw.search(/[0-9]/g);
-      const speCheck = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-
-      let patternCnt = 0;
-      if (numCheck >= 0) ++patternCnt;
-      if (sEngCheck >= 0) ++patternCnt;
-      if (cEngCheck >= 0) ++patternCnt;
-      if (speCheck >= 0) ++patternCnt;
-
-      if (patternCnt >= 3) this.chkMsgPw = "사용하실 수 있는 비밀번호입니다.";
-      else
-        this.chkMsgPw =
-          "비밀번호는 영대문자, 영소문자, 숫자, 특수문자 중 세 가지 이상 포함하여 입력해주세요.";
+      // 비밀번호 재입력 값 삭제
+      this.rePw = "";
     },
-    chkRePw() {
-      if (this.chkRePw.length === 0) {
-        this.chkMsgRePw = "";
-      } else if (this.rePw !== this.pw) {
-        this.chkRePwResult = true;
-        this.chkMsgPw = "위 비밀번호와 동일한 비밀번호를 입력해주세요.";
-      } else {
-        this.chkRePwResult = false;
-        this.chkMsgRePw = "위 비밀번호와 일치합니다.";
-      }
+    rePw() {
+      const rePw = this.rePw;
+      if (!rePw) this.validRePw = 0;
+      else if (this.pw === this.rePw) this.validRePw = 1;
+      else this.validRePw = -1;
     },
-    chkNickname() {
+    nickname() {
       const nickname = this.nickname;
-      if (nickname.length === 0) {
-        this.chkMsgNickname = "";
-        return;
-      } else if (10 < nickname.length || nickname.length < 4) {
-        this.chkMsgNickname = "닉네임은 4자 이상 10자 이하로 입력해주세요.";
-        return;
-      }
-
-      // 요구사항 08. 별명 유효성 검사
-      const speCheck = nickname.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-      const koreanCheck = nickname.search(/[ㄱ-ㅎ|ㅏ-ㅣ]/gi);
-      if (speCheck > -1) {
-        this.chkMsgNickname = "별명에 특수문자를 사용할 수 없습니다.";
-      }
-      // 한글 정규식
-      else if (koreanCheck > -1) {
-        this.chkMsgNickname =
-          "별명에 한글 자음 또는 모음을 사용할 수 없습니다.";
-      } else {
-        // 요구사항 09. 별명 중복 검사
-        http
-          .get(`${this.api}/checkNicknameDupl/${nickname}`)
-          .then((response) => {
-            const result = response.data.data;
-            if (result) {
-              this.chkMsgNickname = "이미 사용중인 닉네임입니다.";
-            } else {
-              this.chkMsgNickname = "사용할 수 있는 닉네임입니다.";
-            }
-            this.chkNicknameResult = result;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        /*
-        서버 통신 필요
-        */
-        this.chkMsgNickname = "사용하실 수 있는 별명입니다.";
+      if (!nickname) this.validNickname = 0;
+      // 길이 제한
+      else if (!(4 <= nickname.length && nickname.length <= 10))
+        this.validNickname = -1;
+      else {
+        const speCheck = nickname.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+        const koreanCheck = nickname.search(/[ㄱ-ㅎ|ㅏ-ㅣ]/gi);
+        // 특수문자 확인
+        if (speCheck > -1) this.validNickname = -2;
+        // 한글 자음 모음 확인
+        else if (koreanCheck > -1) this.validNickname = -3;
+        else {
+          // 중복 확인
+          http
+            .get(`${this.api}/checkNicknameDupl/${nickname}`)
+            .then((response) => {
+              if (response.data.data) this.validNickname = -4;
+              else this.validNickname = 1;
+            })
+            .catch((error) => {
+              console.log(error);
+              alert(error);
+              this.validNickname = 0;
+            });
+        }
       }
     },
   },
+  methods: {},
 };
 </script>
