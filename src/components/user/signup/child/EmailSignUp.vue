@@ -120,6 +120,35 @@
         </template>
       </vs-input>
     </vs-row>
+
+    <!-- terms agree -->
+    <vs-row justify="center">
+      <vs-checkbox success v-model="totalTerm" @change="checkTotalTerm">
+        이용약관 전체 동의
+      </vs-checkbox>
+    </vs-row>
+    <div v-for="(term, index) in terms" :key="index">
+      <vs-row justify="center">
+        <vs-checkbox
+          name="terms"
+          success
+          :val="term.code"
+          @change="checkTerm"
+          v-model="checkTerms"
+        >
+          {{ term.title }}
+        </vs-checkbox>
+      </vs-row>
+      <vs-row justify="center">
+        <textarea
+          style="border: 1px solid; font-size: 3px"
+          readonly
+          :value="term.content"
+          cols="50"
+          rows="3"
+        />
+      </vs-row>
+    </div>
   </div>
 </template>
 <script>
