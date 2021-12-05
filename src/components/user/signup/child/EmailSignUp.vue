@@ -76,18 +76,50 @@
     </vs-row>
 
     <!-- nickname -->
-    <div class="center content-inputs">
+    <vs-row justify="center">
       <vs-input
-        label="닉네임"
+        primary
         type="text"
         v-model="nickname"
-        v-on:blur="chkNickname"
         placeholder="닉네임을 입력해주세요."
-      />
-      <span v-bind:class="chkNicknameResult ? 'true' : 'false'">{{
-        chkMsgNickname
-      }}</span>
-    </div>
+      >
+        <template #icon>
+          <i class="bx bx-smile"></i>
+        </template>
+        <template v-if="validNickname == 1" #message-success>
+          사용 가능한 닉네임입니다.
+        </template>
+        <template
+          v-else-if="validNickname == -1 && nickname !== ''"
+          #message-danger
+        >
+          4자 이상 10자 이하로 입력해주세요.
+        </template>
+        <template
+          v-else-if="validNickname == -2 && nickname !== ''"
+          #message-danger
+        >
+          특수문자를 사용할 수 없습니다.
+        </template>
+        <template
+          v-else-if="validNickname == -3 && nickname !== ''"
+          #message-danger
+        >
+          한글 자음 또는 모음을 사용할 수 없습니다.
+        </template>
+        <template
+          v-else-if="validNickname == -4 && nickname !== ''"
+          #message-danger
+        >
+          이미 사용중인 닉네임입니다.
+        </template>
+        <template
+          v-else-if="validNickname == -5 && nickname !== ''"
+          #message-danger
+        >
+        </template>
+      </vs-input>
+    </vs-row>
   </div>
 </template>
 <script>
