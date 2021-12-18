@@ -186,4 +186,72 @@ export default {
       }
     }
   },
+  mounted() {
+    this.getNotice();
+  },
+
+  methods: {
+    getNotice(){
+     
+      http
+        .get(`http://54.254.102.29:8080/api/user/notice/`)
+        .then((response) => {
+          let value = response.data;
+          this.notice_list_value = JSON.parse(JSON.stringify(value));
+          this.notice_list_len = this.notice_list_value.data.length;
+
+          if (this.notice_list_len % this.maxNoticeView === 0) this.notice_page = this.notice_list_len / this.maxNoticeView
+          else this.notice_page = parseInt(this.notice_list_len / this.maxNoticeView) + 1;
+          
+          for(let i = 0; i < this.notice_list_len; i++){
+            this.notice_list.push(this.notice_list_value.data[i]);
+          }
+          this.page = 1;
+      })
+        .catch((error) => {
+          console.log(error);
+      });
+    },
+
+    delNotice(index){
+      this.$swal.fire({
+        icon: 'warning',
+        title: '진짜 삭제 할거야??',
+        showDenyButton: true,
+        showCancelButton: true,
+        showConfirmButton: false, 
+        denyButtonText: '응',
+        cancelButtonText: '아니!!'
+      }).then((result) => {
+        if (result.isDenied) {
+          this.del_notice.notice_id = index
+          console.log(JSON.stringify(this.del_notice))
+          this.$swal.fire('삭제했어!', '', 'success')
+        }
+      })
+    },
+    addNotice(){
+      this.$swal.fire({
+        title: '공지사항 추가',
+        html:
+          '<div class="add-form">'+
+          ' <input id="input-title" class="input-title" placeholder="제목" ref="qwe"><br>' +
+          ' <textarea id="input-content" class="input-content" placeholder="내용">' +
+          '',
+        showCancelButton: true,
+        confirmButtonText: '추가',
+        cancelButtonText: '취소'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // swal에선 v-model을 사용할 수 없음
+          this.add_notice.title = document.getElementById("input-title").value
+          this.add_notice.content = document.getElementById("input-content").value
+          
+          console.log(JSON.stringify(this.add_notice))
+
+          this.$swal.fire('추가했어!', '', 'success')
+        }
+      })
+    }
+  },
 }
