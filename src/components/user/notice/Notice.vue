@@ -138,6 +138,7 @@
   </div>
 </template>
 <script>
+import http from "@/util/http-common.js";
 
 export default {
   name: "DamoaFrontendNotice",
