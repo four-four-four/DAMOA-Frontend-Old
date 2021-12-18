@@ -255,3 +255,40 @@ export default {
     }
   },
 }
+</script>
+<style>
+  .vs-card__img{
+    height: 180px!important;
+  }
+  .vs-card {
+    margin: auto;
+  }
+  .swal2-popup {
+    font-family: 'Noto Sans KR', sans-serif!important;
+  }
+  .swal2-styled.swal2-confirm {
+    background-color: #2D46B9!important;
+  }
+  .add-form {
+    margin: auto;
+  }
+  .input-title {
+    width: 100%;
+    height: 50px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 2px solid #d1d3d4;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .input-content {
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 2px solid #d1d3d4
+  }
+  .input-title:focus, .input-content:focus-visible {
+    border: 2px solid #2D46B9!important
+  }
+</style>
