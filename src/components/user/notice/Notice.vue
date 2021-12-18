@@ -161,4 +161,29 @@ export default {
       }
     };
   },
+  watch: {
+    page(){
+      // 기존 공지사항 리스트 초기화
+      this.notice_view = [];
+
+      // 공지사항의 갯수가 maxNoticeView보다 작을때
+      if(this.notice_list_len < this.maxNoticeView + 1){
+          this.notice_list.forEach(element => {
+            this.notice_view.push(element);
+          });
+      }
+
+      else {
+        let maxCnt = 0
+
+        // 보여줄 페이지의 갯수를 가져옴
+        if (this.maxNoticeView * this.page > this.notice_list_len) maxCnt = this.notice_list_len % this.maxNoticeView;
+        // maxNoticeView * page가 len과 같은 경우 maxNoticeView만큼 가져옴
+        else maxCnt = this.maxNoticeView;
+        for(let i = 0; i < maxCnt; i++){
+          this.notice_view.push(this.notice_list[(this.page - 1) * this.maxNoticeView + i])
+        }
+      }
+    }
+  },
 }
