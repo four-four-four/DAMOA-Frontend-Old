@@ -292,3 +292,92 @@ export default {
     border: 2px solid #2D46B9!important
   }
 </style>
+<style scoped>
+  .v-expansion-panel-header--active {
+    background-color: #396EB0;
+    color: #F7F7F7;
+  }
+  h2{
+    margin-left: 10px;
+    font-size: 40px;
+    margin-bottom: 5px;
+    color: #2C272E;
+  }
+  .delete-btn {
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  .v-expansion-panels > *:last-child:hover {
+    overflow: hidden;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    transition: 0ms;
+  }
+  .accodian-header {
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: -1px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .accodian-header:hover {
+    background-color: #396EB0;
+    color: #F7F7F7;
+  }
+
+  .accodian-content {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    color: #2C272E;
+  }
+  .accodian-author {
+    margin-top: 20px;
+    font-weight: 600;
+    margin-bottom: 1px;
+  }
+  .accodian-date {
+    margin-top: 1px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 4px;
+  }
+  .notice-container {
+    box-shadow: 2px 1px 8px rgb(11 26 50 / 80%);
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    margin-top: 10px;
+    background-color: #F9F9F9 !important;
+    border-radius: 10px;
+  }
+  .team-container {
+    box-shadow: 2px 1px 8px rgb(11 26 50 / 80%);
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    margin-top: 20px;
+    background-color: #F9F9F9 !important;
+    border-radius: 10px;
+  }
+  .card-container {
+    display: grid;
+    grid-gap: 1rem;
+    padding: 1rem;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+  
+@media (min-width: 500px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+</style>
