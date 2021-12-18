@@ -56,6 +56,85 @@
         ></v-pagination>
       </div>
     </v-container>
+          <v-container class="team-container">
+      <h2>Team</h2>
+        <div class="card-container">
+            <vs-card v-bind:style="{'margin':'6px 6px'}">
+              <template #title>
+                <h3>김경석</h3>
+              </template>
+              <template #img>
+                <img src="img/pic_ks.png" alt="">
+              </template>
+              <template #text>
+                <p>
+                  Front-end
+                </p>
+              </template>
+              <template #interactions>
+                <vs-button circle href="https://github.com/0xe82de" blank class="white icon">
+                  <i class="bx"><img src="img/github.png" width="15px" height="15px"></i>
+                </vs-button>
+              </template>
+            </vs-card>
+
+            <vs-card v-bind:style="{'margin':'6px 6px'}">
+              <template #title>
+                <h3>김아현</h3>
+              </template>
+              <template #img>
+                <img src="img/pic_ah.png" alt="">
+              </template>
+              <template #text>
+                <p>
+                  Back-end
+                </p>
+              </template>
+              <template #interactions>
+                <vs-button circle href="https://github.com/zlzzlzz2l" blank class="white icon">
+                  <i class="bx"><img src="img/github.png" width="15px" height="15px"></i>
+                </vs-button>
+              </template>
+            </vs-card>
+
+            <vs-card v-bind:style="{'margin':'6px 6px'}">
+              <template #title>
+                <h3>박상근</h3>
+              </template>
+              <template #img>
+                <img src="img/pic_sg.png" alt="">
+              </template>
+              <template #text>
+                <p>
+                  Back-end
+                </p>
+              </template>
+              <template #interactions>
+                <vs-button circle href="https://github.com/tkdrms568" blank class="white icon">
+                  <i class="bx"><img src="img/github.png" width="15px" height="15px"></i>
+                </vs-button>
+              </template>
+            </vs-card>
+            <vs-card v-bind:style="{'margin':'6px 6px'}">
+              <template #title>
+                <h3>유지상</h3>
+              </template>
+              <template #img>
+                <img src="img/pic_js.png" alt="">
+              </template>
+              <template #text>
+                <p>
+                  Front-end
+                </p>
+              </template>
+              <template #interactions>
+                <vs-button circle href="https://github.com/yjs1213" blank class="white icon">
+                  <i class="bx"><img src="img/github.png" width="15px" height="15px"></i>
+                </vs-button>
+              </template>
+            </vs-card>
+        </div>
+      </v-container>
   </div>
 </template>
 <script>
