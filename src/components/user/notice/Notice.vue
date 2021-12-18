@@ -23,7 +23,7 @@
       </div>
       <v-expansion-panels focusable>
         <v-expansion-panel
-          v-for="(notice, index) in notice_view"
+          v-for="(notice, index) in current_page_notice_list"
           :key="index"
         >
           <v-expansion-panel-header class="accodian-header">
@@ -37,7 +37,7 @@
               circle
               flat
               color="#CD1818"
-              :active="active == 0"
+              :active="btn_active == 0"
               @click="delNotice(notice.notice_id)"
               class="delete-btn"
             >
@@ -49,8 +49,8 @@
       <br>
       <div class="text-center">
         <v-pagination
-          v-model="page"
-          :length=notice_page
+          v-model="current_page"
+          :length=page_length
           circle
           color="#2D46B9"
         ></v-pagination>
@@ -144,13 +144,14 @@ export default {
   name: "DamoaFrontendNotice",
   data() {
     return { 
-      page: 0,
-      active: 0,
+      current_page: 0, //현재 페이지
+      page_length: 0, // 리스트 페이지 갯수
+      btn_active: 0, 
       notice_list: [],
       notice_list_value: "",
       notice_list_len: 0,
-      notice_view: [],
-      notice_page: 0,
+      current_page_notice_list: [],
+
       maxNoticeView: 7,
       add_notice: {
         title: '',
@@ -162,14 +163,14 @@ export default {
     };
   },
   watch: {
-    page(){
+    current_page(){
       // 기존 공지사항 리스트 초기화
-      this.notice_view = [];
+      this.current_page_notice_list = [];
 
       // 공지사항의 갯수가 maxNoticeView보다 작을때
       if(this.notice_list_len < this.maxNoticeView + 1){
           this.notice_list.forEach(element => {
-            this.notice_view.push(element);
+            this.current_page_notice_list.push(element);
           });
       }
 
@@ -177,11 +178,11 @@ export default {
         let maxCnt = 0
 
         // 보여줄 페이지의 갯수를 가져옴
-        if (this.maxNoticeView * this.page > this.notice_list_len) maxCnt = this.notice_list_len % this.maxNoticeView;
+        if (this.maxNoticeView * this.current_page > this.notice_list_len) maxCnt = this.notice_list_len % this.maxNoticeView;
         // maxNoticeView * page가 len과 같은 경우 maxNoticeView만큼 가져옴
         else maxCnt = this.maxNoticeView;
         for(let i = 0; i < maxCnt; i++){
-          this.notice_view.push(this.notice_list[(this.page - 1) * this.maxNoticeView + i])
+          this.current_page_notice_list.push(this.notice_list[(this.current_page - 1) * this.maxNoticeView + i])
         }
       }
     }
@@ -200,13 +201,13 @@ export default {
           this.notice_list_value = JSON.parse(JSON.stringify(value));
           this.notice_list_len = this.notice_list_value.data.length;
 
-          if (this.notice_list_len % this.maxNoticeView === 0) this.notice_page = this.notice_list_len / this.maxNoticeView
-          else this.notice_page = parseInt(this.notice_list_len / this.maxNoticeView) + 1;
+          if (this.notice_list_len % this.maxNoticeView === 0) this.page_length = this.notice_list_len / this.maxNoticeView
+          else this.page_length = parseInt(this.notice_list_len / this.maxNoticeView) + 1;
           
           for(let i = 0; i < this.notice_list_len; i++){
             this.notice_list.push(this.notice_list_value.data[i]);
           }
-          this.page = 1;
+          this.current_page = 1;
       })
         .catch((error) => {
           console.log(error);
