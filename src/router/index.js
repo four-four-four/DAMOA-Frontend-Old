@@ -5,6 +5,8 @@ import Home from "../views/Home.vue";
 import User from "@/views/User.vue";
 import SignUp from "@/components/user/signup/SignUp.vue";
 import EmailSignUp from "@/components/user/signup/child/EmailSignUp.vue";
+import SignIn from "@/components/user/signin/SignIn.vue";
+
 import Notice from "@/components/user/notice/Notice.vue"
 
 Vue.use(VueRouter);
@@ -31,6 +33,11 @@ const routes = [
             component: EmailSignUp,
           },
         ],
+      },
+      {
+        path: "signin",
+        name: "SignIn",
+        component: SignIn,
       },
       {
         path: "notice",
