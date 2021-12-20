@@ -1,5 +1,12 @@
 <template>
   <v-container> </v-container>
+  <v-container>
+    <v-card class="mx-auto" max-width="500" height="300" outlined>
+      <v-row justify="center">
+        <v-card-title>로그인</v-card-title>
+      </v-row>
+    </v-card>
+  </v-container>
 </template>
 <script>
 export default {
