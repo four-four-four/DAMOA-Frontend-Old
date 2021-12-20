@@ -151,7 +151,6 @@ export default {
       notice_list_value: "",
       notice_list_len: 0,
       current_page_notice_list: [],
-
       maxNoticeView: 7,
       add_notice: {
         title: '',
@@ -159,7 +158,8 @@ export default {
       },
       del_notice: {
         notice_id: ''
-      }
+      },
+      api: "http://54.254.102.29:8080/api/v1",
     };
   },
   watch: {
@@ -193,9 +193,9 @@ export default {
 
   methods: {
     getNotice(){
-     
+
       http
-        .get(`http://54.254.102.29:8080/api/user/notice/`)
+        .get(`${this.api}/notices`)
         .then((response) => {
           let value = response.data;
           this.notice_list_value = JSON.parse(JSON.stringify(value));
