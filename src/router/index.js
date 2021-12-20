@@ -5,6 +5,7 @@ import Home from "../views/Home.vue";
 import User from "@/views/User.vue";
 import SignUp from "@/components/user/signup/SignUp.vue";
 import EmailSignUp from "@/components/user/signup/child/EmailSignUp.vue";
+import Notice from "@/components/user/notice/Notice.vue"
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,11 @@ const routes = [
             component: EmailSignUp,
           },
         ],
+      },
+      {
+        path: "notice",
+        name: "Notice",
+        component: Notice,
       },
     ],
   },
