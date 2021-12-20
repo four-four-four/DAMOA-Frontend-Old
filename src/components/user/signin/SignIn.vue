@@ -6,6 +6,15 @@
       </v-row>
       <v-row justify="center">
         <v-form ref="form" v-model="valid" lazy-validation>
+          <v-row justify="center">
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              required
+            ></v-text-field>
+          </v-row>
+
         </v-form>
       </v-row>
     </v-card>
