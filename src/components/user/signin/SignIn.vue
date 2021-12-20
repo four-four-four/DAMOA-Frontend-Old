@@ -15,6 +15,19 @@
             ></v-text-field>
           </v-row>
 
+          <v-row justify="center">
+            <v-text-field
+              v-model="password"
+              :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]"
+              :type="show3 ? 'text' : 'password'"
+              name="input-10-2"
+              label="Password"
+              class="input-group--focused"
+              @click:append="show3 = !show3"
+            ></v-text-field>
+          </v-row>
+
         </v-form>
       </v-row>
     </v-card>
