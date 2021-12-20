@@ -28,6 +28,17 @@
             ></v-text-field>
           </v-row>
 
+          <v-row justify="center">
+            <v-btn
+              block
+              class="ma-2"
+              color="orange"
+              outlined
+              @click="$router.push({ name: 'SignUp' })"
+            >
+              이메일로 회원가입하기
+            </v-btn>
+          </v-row>
         </v-form>
       </v-row>
     </v-card>
