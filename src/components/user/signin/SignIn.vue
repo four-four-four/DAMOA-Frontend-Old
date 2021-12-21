@@ -52,7 +52,17 @@ export default {
 
   data() {
     return {
-      sampleData: "",
+      valid: true,
+      email: "",
+      emailRules: [
+        (v) => !!v || "이메일을 입력해주세요.",
+        (v) => /.+@.+\..+/.test(v) || "이메일 형식에 맞지 않습니다.",
+      ],
+      password: "",
+      rules: {
+        required: (value) => !!value || "비밀번호를 입력해주세요.",
+        min: (v) => v.length >= 8 || "비밀번호를 8자 이상 입력해주세요.",
+      },
       isShowPw: false,
     };
   },
