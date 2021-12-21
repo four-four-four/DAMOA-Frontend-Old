@@ -18,13 +18,13 @@
           <v-row justify="center">
             <v-text-field
               v-model="password"
-              :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+              :append-icon="isShowPw ? 'mdi-eye' : 'mdi-eye-off'"
               :rules="[rules.required, rules.min]"
-              :type="show3 ? 'text' : 'password'"
+              :type="isShowPw ? 'text' : 'password'"
               name="input-10-2"
               label="Password"
               class="input-group--focused"
-              @click:append="show3 = !show3"
+              @click:append="isShowPw = !isShowPw"
             ></v-text-field>
           </v-row>
 
@@ -53,6 +53,7 @@ export default {
   data() {
     return {
       sampleData: "",
+      isShowPw: false,
     };
   },
 
