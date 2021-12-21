@@ -64,6 +64,8 @@ export default {
         min: (v) => v.length >= 8 || "비밀번호를 8자 이상 입력해주세요.",
       },
       isShowPw: false,
+
+      api: "http://localhost:9999/api/v1/users",
     };
   },
 
