@@ -12,6 +12,7 @@
               :rules="emailRules"
               label="E-mail"
               required
+              @keyup.enter="login"
             ></v-text-field>
           </v-row>
 
@@ -25,6 +26,7 @@
               label="Password"
               class="input-group--focused"
               @click:append="isShowPw = !isShowPw"
+              @keyup.enter="login"
             ></v-text-field>
           </v-row>
 
