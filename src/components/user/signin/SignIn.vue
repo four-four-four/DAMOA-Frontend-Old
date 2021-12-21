@@ -35,7 +35,7 @@
               :disabled="!valid"
               color="indigo"
               outlined
-              @click="validate"
+              @click="login"
             >
               로그인하기
             </v-btn>
