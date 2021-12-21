@@ -32,6 +32,19 @@
             <v-btn
               block
               class="ma-2"
+              :disabled="!valid"
+              color="indigo"
+              outlined
+              @click="validate"
+            >
+              로그인하기
+            </v-btn>
+          </v-row>
+
+          <v-row justify="center">
+            <v-btn
+              block
+              class="ma-2"
               color="orange"
               outlined
               @click="$router.push({ name: 'SignUp' })"
