@@ -135,8 +135,8 @@ export default {
     ],
     btnItems: [
       {
-        title: "Sign Up",
-        to: { name: "SignUp" },
+        title: "Sign In",
+        to: { name: "SignIn" },
       },
     ],
   }),
