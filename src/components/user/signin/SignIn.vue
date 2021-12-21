@@ -86,6 +86,25 @@ export default {
     };
   },
 
+  methods: {
+    login() {
+      if (!this.$refs.form.validate()) return;
+
+      http
+        .post(`${this.api}/login`, {
+          userEmail: this.email,
+          userPw: this.password,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log("에러");
+          console.log(error);
+        });
+    },
+  },
+
   beforeCreate() {},
   created() {},
   beforeMount() {},
@@ -94,6 +113,5 @@ export default {
   updated() {},
   beforeUnmount() {},
   unmounted() {},
-  methods: {},
 };
 </script>
