@@ -60,8 +60,6 @@
   </v-container>
 </template>
 <script>
-import http from "@/util/http-common.js";
-
 export default {
   name: "",
 
@@ -81,8 +79,6 @@ export default {
         min: (v) => v.length >= 8 || "비밀번호를 8자 이상 입력해주세요.",
       },
       isShowPw: false,
-
-      api: "http://localhost:9999/api/v1/users",
     };
   },
 
@@ -90,28 +86,20 @@ export default {
     login() {
       if (!this.$refs.form.validate()) return;
 
-      http
-        .post(`${this.api}/login`, {
-          userEmail: this.email,
-          userPw: this.password,
+      this.$store
+        .dispatch("signIn", {
+          email: this.email,
+          password: this.password,
         })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log("에러");
-          console.log(error);
+        .then((isLogin) => {
+          if (isLogin) {
+            alert("로그인 성공");
+            this.$router.push({ name: "Home" });
+          } else {
+            alert("회원 정보가 올바르지 않습니다.");
+          }
         });
     },
   },
-
-  beforeCreate() {},
-  created() {},
-  beforeMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeUnmount() {},
-  unmounted() {},
 };
 </script>
