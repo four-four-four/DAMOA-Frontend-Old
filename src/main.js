@@ -4,6 +4,7 @@ import vuetify from "./plugins/vuetify";
 import router from "./router";
 import Vuesax from "vuesax";
 import AsyncComputed from "vue-async-computed";
+import store from "./store";
 
 import "vuesax/dist/vuesax.css";
 import "boxicons/css/boxicons.min.css";
@@ -22,5 +23,6 @@ new Vue({
   Vuesax,
   VueSweetalert2,
   AsyncComputed,
+  store,
   render: (h) => h(App),
 }).$mount("#app");
