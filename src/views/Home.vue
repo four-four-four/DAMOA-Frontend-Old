@@ -94,3 +94,35 @@ export default {
   },
 };
 </script>
+<style>
+  .author {
+    font-family: 'Noto Sans KR', sans-serif!important;
+  }
+  .heading-h5 {
+    font-family: 'Noto Sans KR', sans-serif!important;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: normal;
+  }
+  .heading-body-1 {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .v-btn {
+    margin-right: 15px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 600;
+  }
+  .v-sheet.v-card:not(.v-sheet--outlined){
+    border-radius: 16px;
+    box-shadow: 1px 1px 8px rgb(0 0 0 / 50%)
+  }
+  .v-card > *:last-child:not(.v-btn):not(.v-chip):not(.v-avatar){
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+  }
+</style>
