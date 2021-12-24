@@ -3,40 +3,24 @@
     <div>
       <v-card to="detail">
         <v-img
-          src="https://images.pexels.com/photos/3244513/pexels-photo-3244513.jpeg"
-          gradient="to top, rgba(25,32,72,.7), rgba(25,32,72,.0)"
-          :aspect-ratio="16 / 9"
-          height="500px"
+          src="img/pic_main_banne1r.png"
+          height="70px"
+          gradient="to left, rgba(25,32,72,.5), rgba(25,32,72,.0)"
           dark
         >
           <v-card-text class="fill-height d-flex align-end">
-            <v-row class="flex-column">
-              <v-col>
-                <v-btn color="accent" to="category">Travel</v-btn>
-              </v-col>
-              <v-col cols="12" md="10" lg="8" xl="7">
-                <h2 class="text-h3 py-3" style="line-height: 1.2">
-                  Great Travel Blogs From Around The World To Inspire You
-                </h2>
-              </v-col>
-              <v-col class="d-flex align-center">
-                <v-avatar class="elevation-4" color="accent">
-                  <v-icon large>mdi-feather</v-icon>
-                </v-avatar>
-
-                <div class="text-h6 pl-2">Yan Lee · 22 July 2019</div>
-              </v-col>
-            </v-row>
+            <v-btn color="#000000" to="#">개발자</v-btn>
+            <v-btn color="#000000" to="#">애플</v-btn>
+            <v-btn color="#000000" to="#">정치</v-btn>
           </v-card-text>
         </v-img>
       </v-card>
     </div>
-
     <v-row>
       <v-col cols="12" lg="12" xl="8">
         <div>
-          <div class="pt-16">
-            <h2 class="text-h4 font-weight-bold pb-4">Recommended For You</h2>
+          <div class="pt-9">
+            <h2 class="text-h4 font-weight-bold pb-4 white--text">Today</h2>
 
             <v-row>
               <v-col cols="12" md="6" lg="4" v-for="i in 6" :key="i">
@@ -48,13 +32,14 @@
                   <div>
                     <v-card
                       flat
-                      :color="hover ? 'white' : 'transparent'"
-                      :elevation="hover ? 12 : 0"
+                      :color="hover ? '#CDDEFF' : '#EEF2FF'"
+                      :elevation="hover ? 5 : 0"
                       hover
                       to="/detail"
+                      :style="{'backgroud-color':'white'}"
                     >
                       <v-img
-                        src="https://cdn.pixabay.com/photo/2020/12/23/14/41/forest-5855196_1280.jpg"
+                        src="https://imgnews.pstatic.net/image/018/2021/12/24/0005113306_001_20211224124901050.jpg?type=w647"
                         :aspect-ratio="16 / 9"
                         gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)"
                         height="200px"
@@ -62,26 +47,25 @@
                         style="border-radius: 16px"
                       >
                         <v-card-text>
-                          <v-btn color="accent" to="category">TIPS</v-btn>
+                          <v-btn color="#292C6D" to="category" class="white--text">정치</v-btn>
                         </v-card-text>
                       </v-img>
 
                       <v-card-text>
-                        <div class="text-h5 font-weight-bold primary--text">
-                          How to write an awesome blog post in 5 steps
+                        <div class="heading-h5 font-weight-bold">
+                          박근혜, 병원TV로 사면 확인 후 '담담'..."거처 알아보는 중" (전문)
                         </div>
 
-                        <div class="text-body-1 py-4">
-                          Ultrices sagittis orci a scelerisque. Massa placerat
-                          duis ultricies lacus sed turpis
+                        <div class="heading-body-1 py-4">
+                          박 전 대통령은 이날 오전 유 변호사와 병원 텔레비전에 나오는 뉴스 화면을 통해 사면을 확인한 것으로 전해졌다. 유 변호사는 박 전 대통령의 당시 반응에 대해 “담담했다”고 전했다.
                         </div>
 
                         <div class="d-flex align-center">
-                          <v-avatar color="accent" size="36">
+                          <v-avatar color="#292C6D" size="36">
                             <v-icon dark>mdi-feather</v-icon>
                           </v-avatar>
 
-                          <div class="pl-2">Yan Lee · 22 July 2019</div>
+                          <div class="pl-2 author">이데일리 · 24 Dec 2021</div>
                         </div>
                       </v-card-text>
                     </v-card>
@@ -89,92 +73,6 @@
                 </v-hover>
               </v-col>
             </v-row>
-          </div>
-
-          <div class="pt-16">
-            <h2 class="text-h4 font-weight-bold pb-4">Featured</h2>
-
-            <v-row>
-              <v-col cols="6" lg="4" v-for="i in 3" :key="i">
-                <v-card flat dark>
-                  <v-img
-                    src="https://cdn.pixabay.com/photo/2019/10/29/14/46/landscape-4587079_1280.jpg"
-                    :aspect-ratio="16 / 9"
-                    gradient="to top, rgba(25,32,72,.4), rgba(25,32,72,.0)"
-                    height="600px"
-                    class="elevation-2 fill-height"
-                  >
-                    <div
-                      class="d-flex flex-column justify-space-between fill-height"
-                    >
-                      <v-card-text>
-                        <v-btn color="accent">ANIMALS</v-btn>
-                      </v-card-text>
-
-                      <v-card-text>
-                        <div
-                          class="text-h5 py-3 font-weight-bold"
-                          style="line-height: 1.2"
-                        >
-                          15 things I have always wondered about birds
-                        </div>
-
-                        <div class="d-flex align-center">
-                          <v-avatar color="accent" size="36">
-                            <v-icon dark>mdi-feather</v-icon>
-                          </v-avatar>
-
-                          <div class="pl-2">Yan Lee · 03 Jan 2019</div>
-                        </div>
-                      </v-card-text>
-                    </div>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
-          </div>
-
-          <div class="pt-16">
-            <h2 class="text-h4 font-weight-bold">Latest Posts</h2>
-
-            <div>
-              <v-row v-for="i in 6" :key="i" class="py-4">
-                <v-col cols="12" md="4">
-                  <v-card flat height="100%">
-                    <v-img
-                      src="https://cdn.pixabay.com/photo/2021/01/27/06/54/nova-scotia-duck-tolling-retriever-5953883_1280.jpg"
-                      :aspect-ratio="16 / 9"
-                      height="100%"
-                    ></v-img>
-                  </v-card>
-                </v-col>
-
-                <v-col>
-                  <div>
-                    <v-btn depressed color="accent">TRAVEL</v-btn>
-
-                    <h3 class="text-h4 font-weight-bold pt-3">
-                      Ut enim blandit volutpat maecenas volutpat blandit
-                    </h3>
-
-                    <p class="text-h6 font-weight-regular pt-3 text--secondary">
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
-
-                    <div class="d-flex align-center">
-                      <v-avatar color="accent" size="36">
-                        <v-icon dark>mdi-feather</v-icon>
-                      </v-avatar>
-
-                      <div class="pl-2">Yan Lee · 03 Jan 2019</div>
-                    </div>
-                  </div>
-                </v-col>
-              </v-row>
-            </div>
           </div>
         </div>
       </v-col>
