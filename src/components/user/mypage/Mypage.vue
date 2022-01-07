@@ -241,4 +241,24 @@ export default {
           grid-template-columns: repeat(7, 1fr);
       }
   }
+  @keyframes odd_keyframe {
+    0% {
+      transform: rotate(-2deg);
+      animation-timing-function: ease-in;
+    }
+    50% {
+      transform: rotate(1.5deg);
+      animation-timing-function: ease-out;
+    }
+  }
+  @keyframes even_keyframe {
+    0% {
+      transform: rotate(2deg);
+      animation-timing-function: ease-in;
+    }
+    50% {
+      transform: rotate(-1.5deg);
+      animation-timing-function: ease-out;
+    }
+  }
 </style>
