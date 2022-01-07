@@ -8,6 +8,7 @@ import EmailSignUp from "@/components/user/signup/child/EmailSignUp.vue";
 import SignIn from "@/components/user/signin/SignIn.vue";
 
 import Notice from "@/components/user/notice/Notice.vue"
+import Mypage from "@/components/user/mypage/Mypage.vue"
 
 Vue.use(VueRouter);
 
@@ -43,6 +44,11 @@ const routes = [
         path: "notice",
         name: "Notice",
         component: Notice,
+      },
+      {
+        path: "mypage",
+        name: "Mypage",
+        component: Mypage,
       },
     ],
   },
