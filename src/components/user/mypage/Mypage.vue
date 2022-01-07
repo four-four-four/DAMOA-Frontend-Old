@@ -29,6 +29,14 @@ export default {
   name: "DamoaFrontendMypage",
   data() {
     return {
+        keywords: ["정치", "코인", "경제", "IT", "자동차", "꽃", "바다", "우주", "핵", "사전", "증권", "부동산", "지도", "개발", "스프링", "도구", "스피커"],
+        keywordsBackgroundColor: [],
+        keywordsDelay: [],
+        keywordsDuration: [],
+        edit: "수정",
+        delete_badge: "none",
+        animation_state: "paused",
+        add_keyword: "none",
     };
   },
   mounted() {
