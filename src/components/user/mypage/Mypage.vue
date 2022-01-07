@@ -216,4 +216,29 @@ export default {
     justify-content: center;
     align-content: center;
   }
+  @media (min-width: 50px) {
+      .grid-container {
+          grid-template-columns: repeat(1, 1fr);
+      }
+  }
+  @media (min-width: 230px) {
+      .grid-container {
+          grid-template-columns: repeat(2, 1fr);
+      }
+  }
+  @media (min-width: 500px) {
+      .grid-container {
+          grid-template-columns: repeat(4, 1fr);
+      }
+  }
+  @media (min-width: 1100px) {
+      .grid-container {
+          grid-template-columns: repeat(5, 1fr);
+      }
+  }
+  @media (min-width: 1200px) {
+      .grid-container {
+          grid-template-columns: repeat(7, 1fr);
+      }
+  }
 </style>
