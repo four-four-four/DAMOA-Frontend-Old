@@ -42,6 +42,24 @@ export default {
   mounted() {
   },
   methods: {
+    init() {
+      for(var k = 0; k < this.keywords.length; k++){
+        this.getRndValue()
+      }
+    },
+    getRndValue(){
+      var R, G, B, delay, duration;
+      
+      R = (Math.floor(Math.random() * 256));
+      G = (Math.floor(Math.random() * 256));
+      B = (Math.floor(Math.random() * 256));   
+      delay = (Math.floor(Math.random() * (60 - 20 + 1)) + 20);
+      duration = (Math.floor(Math.random() * (80 - 20 + 1)) + 20);
+
+      this.keywordsBackgroundColor.push('rgb(' + R + ',' + G + ',' + B + ')')
+      this.keywordsDelay.push('-.' + delay + 's')
+      this.keywordsDuration.push('.' + duration + 's')
+    },
   },
 }
 </script>
