@@ -115,4 +115,105 @@ export default {
 }
 </script>
 <style scoped>
+  h2{
+    margin-left: 10px;
+    font-size: 40px;
+    margin-bottom: 5px;
+    color: #2C272E;
+  }
+  .edit {
+    margin: auto;
+    text-align: right;
+    max-width: 850px;
+    height: 30px;
+  }
+  .edit-text {
+    color: #1C6DD0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+  }
+  .add-keyword {
+    position:relative;
+    text-align: center;
+    width: 70px; 
+    height: 70px; 
+    border-radius: 30px;
+    background-color: #CCD1E4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    cursor: pointer;
+    border: 2px solid rgba(49, 49, 49, 0.178);
+  }
+  .add-keyword-text {
+    margin-top: 2px;
+    color: white;
+    margin-bottom: 0px!important;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+  }
+  .keyword {
+    color: white;
+    mix-blend-mode: difference;
+    margin-bottom: 0px!important;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+  }
+  .delete-badge{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background:#CCD1E4;
+    border: 2px solid rgba(49, 49, 49, 0.178);
+    text-align: center;
+    border-radius: 30px;
+    color: white;
+    padding: 2px 10px;
+    font-size: 15px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .keywords {
+    position:relative;
+    text-align: center;
+    width: 70px; 
+    height: 70px; 
+    border-radius: 30px;
+    border: 2px solid rgba(49, 49, 49, 0.178);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+  .keywords:nth-child(2n) {
+    animation-name: odd_keyframe;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 10%;
+  }
+  .keywords:nth-child(2n-1) {
+    animation-name: even_keyframe;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transform-origin: 30% 5%;
+  }
+  .keywords-container {
+    box-shadow: 2px 1px 8px rgb(11 26 50 / 80%);
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    margin-top: 20px;
+    background-color: #F9F9F9 !important;
+    border-radius: 10px;
+  }
+  .grid-container {
+    display: grid;
+    grid-gap: 1rem;
+    padding: 1rem;
+    margin: auto;
+    max-width: 900px;
+    justify-content: center;
+    align-content: center;
+  }
 </style>
