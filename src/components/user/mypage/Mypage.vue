@@ -60,6 +60,23 @@ export default {
       this.keywordsDelay.push('-.' + delay + 's')
       this.keywordsDuration.push('.' + duration + 's')
     },
+    addKeyword(){
+      this.$swal.fire({
+        title: '추가할 키워드를 입력하세요.',
+        input: 'text',
+        showCancelButton: true,
+        confirmButtonText: '추가',
+        showLoaderOnConfirm: true,
+        preConfirm: (keyword) => {
+          this.keywords.push(keyword)
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.getRndValue()
+          this.$swal.fire('추가했어!', '', 'success')
+        }
+      })
+    },
   },
 }
 </script>
