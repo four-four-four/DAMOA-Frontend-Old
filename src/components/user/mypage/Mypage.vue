@@ -77,6 +77,26 @@ export default {
         }
       })
     },
+    deleteKeyword(keyword){
+      this.$swal.fire({
+        icon: 'warning',
+        title: '진짜 \'' + keyword + '\' 키워드 삭제 할거야??',
+        showDenyButton: true,
+        showCancelButton: true,
+        showConfirmButton: false, 
+        denyButtonText: '응',
+        cancelButtonText: '아니!!'
+      }).then((result) => {
+        if (result.isDenied) {
+          const idx = this.keywords.findIndex(function(item) {return item === keyword})
+          if (idx > -1) this.keywords.splice(idx, 1)
+          if (idx > -1) this.keywordsBackgroundColor.splice(idx, 1)
+          if (idx > -1) this.keywordsDelay.splice(idx, 1)
+          if (idx > -1) this.keywordsDuration.splice(idx, 1)
+          this.$swal.fire('삭제했어!', '', 'success')
+        }
+      })
+    },
   },
 }
 </script>
