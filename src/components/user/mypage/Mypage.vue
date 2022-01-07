@@ -97,6 +97,19 @@ export default {
         }
       })
     },
+    editKeywords(){
+      if (this.edit === '수정'){
+        this.edit = '완료'
+        this.delete_badge = 'inline-block'
+        this.animation_state = 'running'
+        this.add_keyword = 'inline-block'
+      } else{
+        this.edit = '수정'
+        this.delete_badge = 'none'
+        this.animation_state = 'paused'
+        this.add_keyword = 'none'
+      }
+    },
   },
 }
 </script>
