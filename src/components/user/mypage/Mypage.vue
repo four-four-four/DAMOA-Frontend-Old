@@ -102,18 +102,43 @@ export default {
 
   data() {
     return {
-      sampleData: "",
+      email: "",
+      password: "",
+      nickname: "",
+      gender: "",
+      year: 0,
+      month: 0,
+      day: 0,
+      job: "",
+      jobs: [],
     };
   },
 
   beforeCreate() {},
-  created() {},
+  created() {
+    this.email = "test@test.com";
+    this.password = "test12#$";
+    this.nickname = "테스트";
+    this.gender = "남자";
+    this.year = 1995;
+    this.month = 1;
+    this.day = 1;
+    this.job = "학생";
+    this.jobs = ["학생", "군인", "개발자"];
+  },
   beforeMount() {},
   mounted() {},
   beforeUpdate() {},
   updated() {},
   beforeUnmount() {},
   unmounted() {},
-  methods: {},
+  methods: {
+    modify() {
+      alert("수정하기");
+    },
+    reset() {
+      alert("초기화");
+    },
+  },
 };
 </script>
