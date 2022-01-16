@@ -9,6 +9,7 @@ import SignIn from "@/components/user/signin/SignIn.vue";
 
 import Notice from "@/components/user/notice/Notice.vue";
 import Keyword from "@/components/user/mypage/Keyword.vue";
+import Mypage from "@/components/user/mypage/Mypage.vue";
 
 Vue.use(VueRouter);
 
