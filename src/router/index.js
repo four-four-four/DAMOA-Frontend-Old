@@ -7,8 +7,9 @@ import SignUp from "@/components/user/signup/SignUp.vue";
 import EmailSignUp from "@/components/user/signup/child/EmailSignUp.vue";
 import SignIn from "@/components/user/signin/SignIn.vue";
 
-import Notice from "@/components/user/notice/Notice.vue"
-import Mypage from "@/components/user/mypage/Mypage.vue"
+import Notice from "@/components/user/notice/Notice.vue";
+import Keyword from "@/components/user/mypage/Keyword.vue";
+import Mypage from "@/components/user/mypage/Mypage.vue";
 
 Vue.use(VueRouter);
 
@@ -49,6 +50,11 @@ const routes = [
         path: "mypage",
         name: "Mypage",
         component: Mypage,
+      },
+      {
+        path: "keyword",
+        name: "Keyword",
+        component: Keyword,
       },
     ],
   },
