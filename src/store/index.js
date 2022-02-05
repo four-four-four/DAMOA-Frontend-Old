@@ -21,11 +21,11 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    signIn({ commit }, userInfo) {
+    signIn({ commit }, member) {
       return http
-        .post(`/v1/users/login`, {
-          userEmail: userInfo.email,
-          userPw: userInfo.password,
+        .post(`/v1/members/login`, {
+          email: member.email,
+          password: member.password,
         })
         .then(({ data }) => {
           commit("SET_JWT_TOKEN", data.data.jwtToken);

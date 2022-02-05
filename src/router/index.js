@@ -58,21 +58,6 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/category",
-    name: "Category",
-    component: () => import("@/views/Category.vue"),
-  },
-  {
-    path: "/detail",
-    name: "Detail",
-    component: () => import("@/views/Detail.vue"),
-  },
-  {
-    path: "/authors",
-    name: "Authors",
-    component: () => import("@/views/Authors.vue"),
-  },
 ];
 
 const router = new VueRouter({
