@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3 align="center">Sign Up</h3>
     <email-sign-up />
   </div>
 </template>

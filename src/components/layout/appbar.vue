@@ -59,8 +59,8 @@
               class="font-weight-bold text-h5 primary--text"
               @click="$router.push('/')"
             >
-              <v-icon large color="primary">mdi-feather</v-icon>Hero
-              <span class="accent--text">UI</span>
+              <v-icon large color="primary">mdi-feather</v-icon>DAMOA
+              <span class="accent--text">!!!!</span>
             </v-toolbar-title>
           </v-col>
 
@@ -89,22 +89,6 @@
               >{{ item.title }}</v-btn
             >
           </v-col>
-
-          <!-- <v-col class="text-right" v-if="$vuetify.breakpoint.smAndUp">
-            <v-btn
-              v-for="(item, i) in btnItems"
-              :key="i"
-              :outlined="item.outlined"
-              :to="item.to"
-              :href="item.href"
-              :target="item.target"
-              :color="item.color"
-              class="ml-3 text-capitalize"
-            >
-              <v-icon left>{{ item.icon }}</v-icon>
-              {{ item.text }}
-            </v-btn>
-          </v-col> -->
         </v-row>
       </v-container>
     </v-app-bar>
@@ -119,18 +103,6 @@ export default {
       {
         title: "Home",
         to: "/",
-      },
-      {
-        title: "Category",
-        to: "/category",
-      },
-      {
-        title: "Detail",
-        to: "/detail",
-      },
-      {
-        title: "Authors",
-        to: "/authors",
       },
     ],
     btnItems: [

@@ -4,18 +4,13 @@
       <v-container>
         <v-row align="start">
           <v-col cols="12" md="3">
-            <h4 class="text-h5 font-weight-bold">
-              Giraffe
-            </h4>
-            <p class="text-body-1">
-              Create, prototype, collaborate and turn your ideas into incredible
-              products with the definitive platform for digital design.
-            </p>
+            <h4 class="text-h5 font-weight-bold">DAMOA</h4>
+            <p class="text-body-1">DAMOA SITE</p>
           </v-col>
 
           <v-col cols="12" md="3">
             <v-list flat color="transparent">
-              <v-subheader class="text-h6">HeroUI</v-subheader>
+              <v-subheader class="text-h6">DAMOA2</v-subheader>
               <v-list-item-group color="primary">
                 <v-list-item
                   v-for="(item, i) in heroui"
@@ -37,7 +32,7 @@
 
           <v-col cols="12" md="3">
             <v-list flat color="transparent">
-              <v-subheader class="text-h6">Giraffe</v-subheader>
+              <v-subheader class="text-h6">DAMOA3</v-subheader>
               <v-list-item-group color="primary">
                 <v-list-item
                   v-for="(item, i) in shock"
@@ -59,9 +54,7 @@
 
           <v-col cols="12" md="3">
             <div>
-              <h5 class="text-h6 font-weight-bold">
-                Subscribe
-              </h5>
+              <h5 class="text-h6 font-weight-bold">Subscribe</h5>
               <p class="text-body-1">
                 The latest Rocket news, articles, and resources, sent straight
                 to your inbox every month.
@@ -79,9 +72,7 @@
               </v-col>
 
               <v-col cols="4">
-                <v-btn large block color="secondary">
-                  Subscribe
-                </v-btn>
+                <v-btn large block color="secondary"> Subscribe </v-btn>
               </v-col>
             </v-row>
           </v-col>
@@ -109,25 +100,7 @@ export default {
     heroui: [
       {
         text: "Github",
-        href: "https://github.com/AGDholo",
-      },
-      {
-        text: "Themes",
-        href: "https://heroui.net/",
-      },
-    ],
-    shock: [
-      {
-        text: "Download",
-        href: "https://github.com/AGDholo/giraffe",
-      },
-      {
-        text: "Issues",
-        href: "https://github.com/AGDholo/giraffe/issues",
-      },
-      {
-        text: "LICENSE",
-        href: "https://github.com/AGDholo/giraffe/blob/master/LICENSE",
+        href: "https://github.com/four-four-four",
       },
     ],
   }),

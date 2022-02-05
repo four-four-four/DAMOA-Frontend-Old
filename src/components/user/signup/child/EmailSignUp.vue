@@ -186,12 +186,12 @@
         <vs-row justify="center">
           <vs-select placeholder="직업을 선택해주세요." v-model="job">
             <vs-option
-              v-for="(name, index) in jobs"
+              v-for="(job, index) in jobs"
               :key="index"
-              :label="name"
-              :value="name"
+              :label="job"
+              :value="job"
             >
-              {{ name }}
+              {{ job }}
             </vs-option>
           </vs-select>
         </vs-row>
@@ -269,7 +269,7 @@ export default {
 
       // job
       jobs: ["회사원", "학생", "자영업자", "전문직", "기타"],
-      job: null,
+      job: "",
 
       // terms
       totalTerm: false,
@@ -285,20 +285,10 @@ export default {
           content: "개인정보 수집 및 이용 약관",
           code: "term02",
         },
-        {
-          title: "위치정보 수집 및 이용 동의 (선택)",
-          content: "위치정보 수집 및 이용 약관",
-          code: "term03",
-        },
-        {
-          title: "프로모션 정보 수신 동의 (선택)",
-          content: "프로모션 정보 수신 약관",
-          code: "term04",
-        },
       ],
 
       // api
-      api: "/user2",
+      api: "/v1/members",
     };
   },
   watch: {
@@ -308,9 +298,10 @@ export default {
       else if (!this.regExpEmail.test(email)) this.validEmail = -1;
       else {
         http
-          .get(`${this.api}/checkEmailDupl/${email}`)
+          .get(`${this.api}/email/${email}/exists`)
           .then((response) => {
-            if (response.data.data) this.validEmail = -2;
+            console.log(response);
+            if (response.data.status !== 204) this.validEmail = -2;
             else this.validEmail = 1;
           })
           .catch((error) => {
@@ -367,9 +358,9 @@ export default {
         else {
           // 중복 확인
           http
-            .get(`${this.api}/checkNicknameDupl/${nickname}`)
+            .get(`${this.api}/nickname/${nickname}/exists`)
             .then((response) => {
-              if (response.data.data) this.validNickname = -4;
+              if (response.data.status !== 204) this.validNickname = -4;
               else this.validNickname = 1;
             })
             .catch((error) => {
@@ -419,17 +410,18 @@ export default {
       }
 
       http
-        .post(`${this.api}/emailRegister`, {
+        .post(`${this.api}/email-register`, {
           email: this.email,
           password: this.pw,
           nickname: this.nickname,
           gender: this.gender,
           birthDate: this.birthDate,
           job: this.job,
-          terms: this.checkTerms,
+          serviceTerm: true,
+          privacyTerm: true,
         })
         .then((response) => {
-          if (response.data.data) {
+          if (response.data.status === 201) {
             alert("회원가입 성공!");
             this.$router.push({
               name: "Home",
