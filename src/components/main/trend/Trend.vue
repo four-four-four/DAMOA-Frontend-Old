@@ -43,6 +43,12 @@ export default {
   name: "DamoaFrontendTrend",
   data() {
     return {
+        rank: ["1위 보쌈", "2위 빅맥", "3위 짜장면", "4위 피자", "5위 치킨"],
+        current: 0,
+        riseChart: undefined,
+        categoryChart: undefined,
+        visitChart: undefined,
+        hours: [],
     };
   },
   mounted() {
