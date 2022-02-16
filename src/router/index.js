@@ -10,6 +10,8 @@ import SignIn from "@/components/user/signin/SignIn.vue";
 import Notice from "@/components/user/notice/Notice.vue"
 import Mypage from "@/components/user/mypage/Mypage.vue"
 
+import Trend from "@/components/main/trend/Trend.vue"
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -51,6 +53,11 @@ const routes = [
         component: Mypage,
       },
     ],
+  },
+  {
+    path: "/trend",
+    name: "Trend",
+    component: Trend,
   },
   {
     path: "/category",
