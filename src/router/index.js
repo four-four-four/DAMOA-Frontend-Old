@@ -11,6 +11,8 @@ import Notice from "@/components/user/notice/Notice.vue";
 import Keyword from "@/components/user/mypage/Keyword.vue";
 import Mypage from "@/components/user/mypage/Mypage.vue";
 
+import Trend from "@/components/main/trend/Trend.vue"
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -57,6 +59,11 @@ const routes = [
         component: Keyword,
       },
     ],
+  },
+  {
+    path: "/trend",
+    name: "Trend",
+    component: Trend,
   },
 ];
 
