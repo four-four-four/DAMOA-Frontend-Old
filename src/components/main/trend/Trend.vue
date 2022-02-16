@@ -39,6 +39,7 @@
   </div>
 </template>
 <script>
+import Chart from "chart.js";
 export default {
   name: "DamoaFrontendTrend",
   data() {
@@ -52,6 +53,10 @@ export default {
     };
   },
   mounted() {
+      this.calcHours()
+      this.drawRiseChart([1, 2, 3, 5, 6, 130])
+      this.drawCategoryChart()
+      this.drawVisitChart()
   },
   methods: {
   },
