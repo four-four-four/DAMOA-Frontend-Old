@@ -219,4 +219,112 @@ export default {
 }
 </script>
 <style scoped>
+h2 {
+	padding-top: 10px;
+    text-align: center;
+	font-size: 40px;
+	margin-bottom: -5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #181D31;
 }
+
+ul {
+	list-style: none;
+}
+.current {
+	font-weight: 600;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 25px;
+    background: linear-gradient(180deg,rgba(255,255,255,0) 60%, #FFE162 40%);
+	text-decoration: none;
+}
+.rise-chart {
+    padding: 30px 60px;
+}
+.rank-list {
+	margin-left: 30px; 
+	margin-right: 30px;
+    padding: 20px 10px;
+}
+.rank-keyword {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 24px;
+	font-weight: 400;
+}
+.rank-content {
+	margin-top: 10px;
+	background-color: #eeeeee;
+	border-radius: 10px;
+	margin: 10px 15px;
+	padding: 20px 0px;
+}
+.rank-container {
+	box-shadow: 2px 1px 8px rgb(11 26 50 / 80%);
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	background-color: #396EB0 !important;
+	border-radius: 10px;
+}
+.grid-container {
+	display: grid;
+	grid-gap: 1rem;
+	margin: auto;
+	max-width: 1600px;
+	justify-content: center;
+	align-content: center;
+	margin-bottom: 15px;
+}
+.legend-container {
+	padding: 30px 50px 30px 50px;
+    margin: 30px 60px;
+    background-color: #F7F7F7;
+    border-radius: 20px;
+}
+.chart-container {
+	margin: auto;
+	max-width: 1600px;
+	margin-bottom: 15px;
+	border-radius: 10px;
+	background-color: #eeeeee;
+}
+.rank-title h2 {
+	font-size: 30px;
+	margin-bottom: 5px;
+	color: #eeeeee;
+	font-weight: 500;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.rank-title {
+	margin-left: 20px;
+	margin-right: 20px;
+	text-align: center;
+}
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: 20px;
+    }
+    .legend-container {
+        margin: 2px 12px;
+        padding: 12px 15px;
+    }
+    .rise-chart {
+        margin-top: 20px;
+        padding: 0 0;
+    }
+    .current { 
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1100px) {
+	.grid-container {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+@media (min-width: 1903px) {
+	.grid-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+</style>
