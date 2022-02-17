@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="mx-auto" max-width="500" height="300" outlined>
+    <v-card class="mx-auto" max-width="700" height="340" outlined>
       <v-row justify="center">
         <v-card-title>로그인</v-card-title>
       </v-row>
@@ -30,7 +30,7 @@
             ></v-text-field>
           </v-row>
 
-          <v-row justify="center">
+          <v-row justify="center" :style="{'margin-top': '20px'}">
             <v-btn
               block
               class="ma-2"
@@ -103,3 +103,19 @@ export default {
   },
 };
 </script>
+<style scoped>
+  .v-card__title {
+    margin-top: 20px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    color: #2C3333;
+  }
+  .v-input {
+    width: 280px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #2C3333;
+  }
+</style>
