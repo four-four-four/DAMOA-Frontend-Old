@@ -2,11 +2,11 @@
   <div class="grid">
     <vs-card align="center">
       <template #title>
-        <h3>E-mail Sign Up</h3>
+        <h3>이메일로 회원가입</h3>
       </template>
       <template #text>
         <!-- email -->
-        <vs-row justify="center">
+        <vs-row justify="center" style="margin-bottom: 20px">
           <div class="center content-inputs">
             <vs-input
               primary
@@ -15,7 +15,7 @@
               placeholder="이메일을 입력해주세요."
             >
               <template #icon>
-                <i class="bx bx-user"></i>
+                <i class="bx bx-user iconn"></i>
               </template>
               <template v-if="validEmail == 1" #message-success>
                 사용 가능한 이메일입니다.
@@ -35,10 +35,8 @@
             </vs-input>
           </div>
         </vs-row>
-        <br />
-
         <!-- password -->
-        <vs-row justify="center">
+        <vs-row justify="center" style="margin-bottom: 10px">
           <vs-input
             primary
             type="password"
@@ -46,7 +44,7 @@
             placeholder="비밀번호를 입력해주세요."
           >
             <template #icon>
-              <i class="bx bx-lock-open-alt"></i>
+              <i class="bx bx-lock-open-alt iconn"></i>
             </template>
             <template v-if="validPw == 1" #message-success>
               사용 가능한 비밀번호입니다.
@@ -60,10 +58,8 @@
             </template>
           </vs-input>
         </vs-row>
-        <br />
-
         <!-- password check -->
-        <vs-row justify="center">
+        <vs-row justify="center" style="margin-bottom: 20px">
           <vs-input
             primary
             type="password"
@@ -71,7 +67,7 @@
             placeholder="비밀번호를 입력해주세요."
           >
             <template #icon>
-              <i class="bx bx-lock-open-alt"></i>
+              <i class="bx bx-lock-open-alt iconn"></i>
             </template>
             <template v-if="validRePw == 1" #message-success>
               위 비밀번호화 일치합니다.
@@ -84,10 +80,8 @@
             </template>
           </vs-input>
         </vs-row>
-        <br />
-
         <!-- nickname -->
-        <vs-row justify="center">
+        <vs-row justify="center" style="margin-bottom: 20px">
           <vs-input
             primary
             type="text"
@@ -95,7 +89,7 @@
             placeholder="닉네임을 입력해주세요."
           >
             <template #icon>
-              <i class="bx bx-smile"></i>
+              <i class="bx bx-smile iconn"></i>
             </template>
             <template v-if="validNickname == 1" #message-success>
               사용 가능한 닉네임입니다.
@@ -131,24 +125,27 @@
             </template>
           </vs-input>
         </vs-row>
-        <br />
-
-        <!-- gender -->
         <vs-row justify="center">
-          <vs-col w="2">
-            <h4>성별</h4>
-          </vs-col>
-          <vs-col w="3">
-            <vs-radio v-model="gender" val="male"> 남자 </vs-radio>
-          </vs-col>
-          <vs-col w="3">
-            <vs-radio v-model="gender" val="female"> 여자 </vs-radio>
-          </vs-col>
+          <vs-select placeholder="직업을 선택해주세요." v-model="job">
+            <vs-option
+              v-for="(job, index) in jobs"
+              :key="index"
+              :label="job"
+              :value="job"
+            >
+              {{ job }}
+            </vs-option>
+          </vs-select>
         </vs-row>
-        <br />
-
-        <!-- birthdate  -->
+          <br />
         <vs-row justify="center">
+          <vs-input
+            type="date"
+            v-model="birthDate"
+          />
+        </vs-row>
+        <!-- birthdate  
+        <vs-row justify="center" :style="{'width': '300px'}">
           <v-menu
             ref="menu"
             v-model="menu"
@@ -180,31 +177,27 @@
             ></v-date-picker>
           </v-menu>
         </vs-row>
-        <br />
-
-        <!-- job -->
-        <vs-row justify="center">
-          <vs-select placeholder="직업을 선택해주세요." v-model="job">
-            <vs-option
-              v-for="(job, index) in jobs"
-              :key="index"
-              :label="job"
-              :value="job"
-            >
-              {{ job }}
-            </vs-option>
-          </vs-select>
+        -->
+                <!-- gender -->
+        <vs-row justify="center" style="margin-top: 20px">
+          <vs-col w="2">
+            <h4 style="text-align: left;">성별</h4>
+          </vs-col>
+          <vs-col w="2">
+            <vs-radio v-model="gender" val="male"> 남자 </vs-radio>
+          </vs-col>
+          <vs-col w="2">
+            <vs-radio v-model="gender" val="female"> 여자 </vs-radio>
+          </vs-col>
         </vs-row>
-        <br />
-
         <!-- terms agree -->
-        <vs-row justify="center">
+        <vs-row style="margin-left: 28px; margin-top: 30px">
           <vs-checkbox success v-model="totalTerm" @change="checkTotalTerm">
-            이용약관 전체 동의
+            <u>이용약관 전체 동의</u>
           </vs-checkbox>
         </vs-row>
         <div v-for="(term, index) in terms" :key="index">
-          <vs-row justify="center">
+          <vs-row style="margin-left: 28px">
             <vs-checkbox
               name="terms"
               success
@@ -217,7 +210,6 @@
           </vs-row>
           <vs-row justify="center">
             <textarea
-              style="border: 1px solid; font-size: 3px"
               readonly
               :value="term.content"
               cols="50"
@@ -230,7 +222,8 @@
         <!-- register -->
         <vs-row justify="center">
           <vs-button block @click="register">
-            <i class="bx bxs-paint-roll"></i> 회원가입하기
+            <i class="bx bxs-paint-roll" style="margin-right: 5px"></i>
+            <p style="font-size: 17px; color: white; opacity: 1;">회원가입하기</p>
           </vs-button>
         </vs-row>
       </template>
@@ -437,3 +430,44 @@ export default {
   },
 };
 </script>
+<style>
+  textarea {
+    background-color: #F4F7F8;
+    border-radius: 15px;
+    padding: 20px 20px;
+    margin: 5px 20px;
+  }
+  .vs-card__title {
+    margin-top: 10px!important;
+  }
+  .vs-card__title h3 {
+    padding-top: 5px!important;
+    padding-bottom: 10px!important;
+    font-family: 'IBM Plex Sans KR', sans-serif!important;
+    font-weight: 600!important;
+    font-size: 22px!important;
+    color: #2C3333!important;
+  }
+  .vs-card {
+    width: 600px!important;
+    font-family: 'IBM Plex Sans KR', sans-serif!important;
+    font-weight: 600!important;
+    font-size: 26px!important;
+    max-width: 500px!important;
+  }
+  .content-inputs {
+    width: 300px!important;
+  }
+  .vs-input {
+    width: 300px!important;
+  }
+  .vs-select {
+    width: 300px!important;
+  }
+  .vs-select-content {
+    max-width: 300px!important;
+  }
+  .iconn {
+    color: #2C3333!important;
+  }
+</style>
