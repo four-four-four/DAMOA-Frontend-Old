@@ -1,95 +1,13 @@
 <template>
   <div>
-    <v-footer color="primary" dark app absolute>
-      <v-container>
-        <v-row align="start">
-          <v-col cols="12" md="3">
-            <h4 class="text-h5 font-weight-bold">DAMOA</h4>
-            <p class="text-body-1">DAMOA SITE</p>
-          </v-col>
-
-          <v-col cols="12" md="3">
-            <v-list flat color="transparent">
-              <v-subheader class="text-h6">DAMOA2</v-subheader>
-              <v-list-item-group color="primary">
-                <v-list-item
-                  v-for="(item, i) in heroui"
-                  :key="i"
-                  :href="item.href"
-                  dense
-                  target="_black"
-                >
-                  <v-list-item-content>
-                    <v-list-item-title
-                      class="text-body-1"
-                      v-text="item.text"
-                    ></v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-col>
-
-          <v-col cols="12" md="3">
-            <v-list flat color="transparent">
-              <v-subheader class="text-h6">DAMOA3</v-subheader>
-              <v-list-item-group color="primary">
-                <v-list-item
-                  v-for="(item, i) in shock"
-                  :key="i"
-                  :href="item.href"
-                  dense
-                  target="_black"
-                >
-                  <v-list-item-content>
-                    <v-list-item-title
-                      class="text-body-1"
-                      v-text="item.text"
-                    ></v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-col>
-
-          <v-col cols="12" md="3">
-            <div>
-              <h5 class="text-h6 font-weight-bold">Subscribe</h5>
-              <p class="text-body-1">
-                The latest Rocket news, articles, and resources, sent straight
-                to your inbox every month.
-              </p>
-            </div>
-
-            <v-row>
-              <v-col cols="8">
-                <v-text-field
-                  label="Filled"
-                  solo
-                  light
-                  hide-details
-                ></v-text-field>
-              </v-col>
-
-              <v-col cols="4">
-                <v-btn large block color="secondary"> Subscribe </v-btn>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-
-        <div class="text-center mt-6">
-          Copyright &copy;
-          <a
-            class="white--text"
-            href="https://heroui.net"
-            target="_blank"
-            rel="noopener noreferrer"
-            >HreoUI</a
-          >
-          {{ new Date().getFullYear() }}. All rights reserved.
-        </div>
-      </v-container>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <v-footer dark>
+      <div class="footer-container">
+      <div class="links-container">
+          <a :href="github" target="_blank"><i class="fa-brands fa-github fa-2xl"></i></a>
+      </div>
+          <p>© 2022 TEAM FourFourFour</p> 
+      </div>
     </v-footer>
   </div>
 </template>
@@ -97,12 +15,48 @@
 <script>
 export default {
   data: () => ({
-    heroui: [
-      {
-        text: "Github",
-        href: "https://github.com/four-four-four",
-      },
-    ],
+    github: "https://github.com/four-four-four",
   }),
 };
 </script>
+<style>
+  i {
+    color: #F0F0F0;
+  }
+  i:hover{
+    color: #D1D1D1;
+    transform: translateY(-4px);             /*  default */
+    -webkit-transform:translateY(-4px);  /*  크롬 */
+    -moz-transform:translateY(-4px);     /* FireFox */
+    -o-transform:translateY(-4px);        /* Opera */
+    transition: transform .20s;  
+    -o-transition: transform .20s;
+    -moz-transition: transform .20s;
+    -webkit-transition: transform .20s;
+  }
+  .theme--dark.v-footer {
+    background-image: url("/img/wave-haikei.svg")!important;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    height: 700px;
+  }
+  .footer-container {
+    color: #F0F0F0;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding-top: 500px;
+    text-align: center;
+    margin: auto;
+  }
+  .footer-container p {
+    text-align: center;
+  }
+  .links-container {
+    margin-bottom: 20px;
+  }
+  i {
+    cursor: pointer;
+  }
+</style>
