@@ -55,12 +55,12 @@
               v-if="!$vuetify.breakpoint.smAndUp"
             />
             <v-toolbar-title
-              style="cursor: pointer"
+              style="cursor: pointer; font-family: 'yg-jalnan' !important;"
               class="font-weight-bold text-h5 primary--text"
               :style="{'margin-right': '20px'}" 
               @click="$router.push('/')"
             >
-            DAMOA
+            다모아
             </v-toolbar-title>
             <div  v-if="$vuetify.breakpoint.smAndUp">
             <v-btn 
@@ -100,11 +100,11 @@ export default {
     drawer: null,
     barItems: [
       {
-        title: "Home",
+        title: "오늘의 모아",
         to: "/",
       },
       {
-        title: "Trend",
+        title: "트렌드",
         to: "/trend",
       }
     ],
@@ -133,5 +133,11 @@ export default {
   }
   .v-navigation-drawer .v-list:not(.v-select-list) {
     background-color: #2C3333!important;
+  }
+  @font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
   }
 </style>
