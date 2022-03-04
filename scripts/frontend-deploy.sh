@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BE_DIR=/home/ec2-user/deploy/frontend
+FE_DIR=/home/ec2-user/deploy/frontend
 
 echo "############################"
 echo "### 프론트엔드 배포 시작 ###"
