@@ -30,7 +30,7 @@
             ></v-text-field>
           </v-row>
 
-          <v-row justify="center" :style="{'margin-top': '20px'}">
+          <v-row justify="center" :style="{ 'margin-top': '20px' }">
             <v-btn
               block
               class="ma-2"
@@ -71,14 +71,14 @@ export default {
       email: "",
       emailRules: [
         (v) => !!v || "이메일을 입력해주세요.",
-        (v) => /.+@.+\..+/.test(v) || "이메일 형식에 맞지 않습니다.",
+        (v) => /.+@.+\..+/.test(v) || "이메일 형식에 맞지 않습니다."
       ],
       password: "",
       rules: {
         required: (value) => !!value || "비밀번호를 입력해주세요.",
-        min: (v) => v.length >= 8 || "비밀번호를 8자 이상 입력해주세요.",
+        min: (v) => v.length >= 8 || "비밀번호를 8자 이상 입력해주세요."
       },
-      isShowPw: false,
+      isShowPw: false
     };
   },
 
@@ -89,7 +89,7 @@ export default {
       this.$store
         .dispatch("signIn", {
           email: this.email,
-          password: this.password,
+          password: this.password
         })
         .then((isLogin) => {
           if (isLogin) {
@@ -99,23 +99,23 @@ export default {
             alert("회원 정보가 올바르지 않습니다.");
           }
         });
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
-  .v-card__title {
-    margin-top: 20px;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-weight: 600;
-    font-size: 26px;
-    color: #2C3333;
-  }
-  .v-input {
-    width: 280px;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-weight: 600;
-    font-size: 22px;
-    color: #2C3333;
-  }
+.v-card__title {
+  margin-top: 20px;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  color: #2c3333;
+}
+.v-input {
+  width: 280px;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: #2c3333;
+}
 </style>

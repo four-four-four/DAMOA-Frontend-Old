@@ -19,7 +19,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: Home
   },
   {
     path: "/user",
@@ -34,44 +34,44 @@ const routes = [
           {
             path: "email",
             name: "EmailSignUp",
-            component: EmailSignUp,
-          },
-        ],
+            component: EmailSignUp
+          }
+        ]
       },
       {
         path: "signin",
         name: "SignIn",
-        component: SignIn,
+        component: SignIn
       },
       {
         path: "notice",
         name: "Notice",
-        component: Notice,
+        component: Notice
       },
       {
         path: "mypage",
         name: "Mypage",
-        component: Mypage,
+        component: Mypage
       },
       {
         path: "keyword",
         name: "Keyword",
-        component: Keyword,
-      },
-    ],
+        component: Keyword
+      }
+    ]
   },
   {
     path: "/trend",
     name: "Trend",
-    component: Trend,
-  },
+    component: Trend
+  }
 ];
 
 const router = new VueRouter({
   routes,
   scrollBehavior() {
     document.getElementById("app").scrollIntoView();
-  },
+  }
 });
 
 export default router;
