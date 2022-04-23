@@ -12,8 +12,7 @@
               primary
               type="email"
               v-model="email"
-              placeholder="이메일을 입력해주세요."
-            >
+              placeholder="이메일을 입력해주세요.">
               <template #icon>
                 <i class="bx bx-user iconn"></i>
               </template>
@@ -22,14 +21,12 @@
               </template>
               <template
                 v-else-if="validEmail == -1 && email !== ''"
-                #message-danger
-              >
+                #message-danger>
                 이메일 형식이 올바르지 않습니다.
               </template>
               <template
                 v-else-if="validEmail == -2 && email !== ''"
-                #message-danger
-              >
+                #message-danger>
                 이미 사용 중인 이메일입니다.
               </template>
             </vs-input>
@@ -41,8 +38,7 @@
             primary
             type="password"
             v-model="pw"
-            placeholder="비밀번호를 입력해주세요."
-          >
+            placeholder="비밀번호를 입력해주세요.">
             <template #icon>
               <i class="bx bx-lock-open-alt iconn"></i>
             </template>
@@ -64,8 +60,7 @@
             primary
             type="password"
             v-model="rePw"
-            placeholder="비밀번호를 입력해주세요."
-          >
+            placeholder="비밀번호를 입력해주세요.">
             <template #icon>
               <i class="bx bx-lock-open-alt iconn"></i>
             </template>
@@ -74,8 +69,7 @@
             </template>
             <template
               v-else-if="validRePw == -1 && rePw !== ''"
-              #message-danger
-            >
+              #message-danger>
               위 비밀번호와 일치하지 않습니다.
             </template>
           </vs-input>
@@ -86,8 +80,7 @@
             primary
             type="text"
             v-model="nickname"
-            placeholder="닉네임을 입력해주세요."
-          >
+            placeholder="닉네임을 입력해주세요.">
             <template #icon>
               <i class="bx bx-smile iconn"></i>
             </template>
@@ -96,32 +89,27 @@
             </template>
             <template
               v-else-if="validNickname == -1 && nickname !== ''"
-              #message-danger
-            >
+              #message-danger>
               4자 이상 10자 이하로 입력해주세요.
             </template>
             <template
               v-else-if="validNickname == -2 && nickname !== ''"
-              #message-danger
-            >
+              #message-danger>
               특수문자를 사용할 수 없습니다.
             </template>
             <template
               v-else-if="validNickname == -3 && nickname !== ''"
-              #message-danger
-            >
+              #message-danger>
               한글 자음 또는 모음을 사용할 수 없습니다.
             </template>
             <template
               v-else-if="validNickname == -4 && nickname !== ''"
-              #message-danger
-            >
+              #message-danger>
               이미 사용중인 닉네임입니다.
             </template>
             <template
               v-else-if="validNickname == -5 && nickname !== ''"
-              #message-danger
-            >
+              #message-danger>
             </template>
           </vs-input>
         </vs-row>
@@ -131,8 +119,7 @@
               v-for="(job, index) in jobs"
               :key="index"
               :label="job"
-              :value="job"
-            >
+              :value="job">
               {{ job }}
             </vs-option>
           </vs-select>
@@ -200,8 +187,7 @@
               success
               :val="term.code"
               @change="checkTerm"
-              v-model="checkTerms"
-            >
+              v-model="checkTerms">
               {{ term.title }}
             </vs-checkbox>
           </vs-row>
@@ -225,26 +211,26 @@
   </div>
 </template>
 <script>
-import http from "@/util/http-common.js";
+import http from '@/util/http-common.js';
 
 export default {
   data() {
     return {
       // email
-      email: "",
+      email: '',
       validEmail: 0,
       regExpEmail: /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/,
 
       // password
-      pw: "",
+      pw: '',
       validPw: 0,
 
       // password check
-      rePw: "",
+      rePw: '',
       validRePw: 0,
 
       // nickname
-      nickname: "",
+      nickname: '',
       validNickname: 0,
 
       // gender
@@ -255,27 +241,27 @@ export default {
       menu: false,
 
       // job
-      jobs: ["회사원", "학생", "자영업자", "전문직", "기타"],
-      job: "",
+      jobs: ['회사원', '학생', '자영업자', '전문직', '기타'],
+      job: '',
 
       // terms
       totalTerm: false,
       checkTerms: [],
       terms: [
         {
-          title: "DAMOA 서비스 이용약관 동의 (필수)",
-          content: "DAMOA 서비스 약관",
-          code: "term01"
+          title: 'DAMOA 서비스 이용약관 동의 (필수)',
+          content: 'DAMOA 서비스 약관',
+          code: 'term01'
         },
         {
-          title: "개인정보 수집 및 이용 동의 (필수)",
-          content: "개인정보 수집 및 이용 약관",
-          code: "term02"
+          title: '개인정보 수집 및 이용 동의 (필수)',
+          content: '개인정보 수집 및 이용 약관',
+          code: 'term02'
         }
       ],
 
       // api
-      api: "/v1/members"
+      api: '/v1/members'
     };
   },
   watch: {
@@ -321,7 +307,7 @@ export default {
       }
 
       // 비밀번호 재입력 값 삭제
-      this.rePw = "";
+      this.rePw = '';
     },
     rePw() {
       const rePw = this.rePw;
@@ -378,21 +364,21 @@ export default {
     },
     register() {
       if (this.validEmail !== 1) {
-        alert("이메일을 입력해주세요.");
+        alert('이메일을 입력해주세요.');
         return;
       } else if (this.validPw !== 1) {
-        alert("비밀번호를 입력해주세요.");
+        alert('비밀번호를 입력해주세요.');
         return;
       } else if (this.validNickname !== 1) {
-        alert("닉네임을 입력해주세요.");
+        alert('닉네임을 입력해주세요.');
         return;
       }
 
       if (
-        this.checkTerms.indexOf("term01") < 0 ||
-        this.checkTerms.indexOf("term02") < 0
+        this.checkTerms.indexOf('term01') < 0 ||
+        this.checkTerms.indexOf('term02') < 0
       ) {
-        alert("필수 약관을 동의해주세요.");
+        alert('필수 약관을 동의해주세요.');
         return;
       }
 
@@ -409,15 +395,15 @@ export default {
         })
         .then((response) => {
           if (response.data.status === 201) {
-            alert("회원가입 성공!");
+            alert('회원가입 성공!');
             this.$router.push({
-              name: "Home"
+              name: 'Home'
             });
           }
           console.log(response);
         })
         .catch((error) => {
-          alert("회원가입 실패!");
+          alert('회원가입 실패!');
           console.log(error);
         });
     }
@@ -437,14 +423,14 @@ textarea {
 .vs-card__title h3 {
   padding-top: 5px !important;
   padding-bottom: 10px !important;
-  font-family: "IBM Plex Sans KR", sans-serif !important;
+  font-family: 'IBM Plex Sans KR', sans-serif !important;
   font-weight: 600 !important;
   font-size: 22px !important;
   color: #2c3333 !important;
 }
 .vs-card {
   width: 600px !important;
-  font-family: "IBM Plex Sans KR", sans-serif !important;
+  font-family: 'IBM Plex Sans KR', sans-serif !important;
   font-weight: 600 !important;
   font-size: 26px !important;
   max-width: 500px !important;
