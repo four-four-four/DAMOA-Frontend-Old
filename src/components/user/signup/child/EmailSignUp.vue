@@ -334,9 +334,9 @@ export default {
         else {
           // 중복 확인
           http
-            .get(`${this.api}/nickname/${nickname}/exists`)
+            .get(`${this.serv}/members/nickname-duplicate-check/${nickname}`)
             .then((response) => {
-              if (response.data.status !== 204) this.validNickname = -4;
+              if (response.status !== 204) this.validNickname = -4;
               else this.validNickname = 1;
             })
             .catch((error) => {
