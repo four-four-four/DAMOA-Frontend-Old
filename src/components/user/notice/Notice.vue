@@ -174,12 +174,12 @@ export default {
       maxNoticeView: 7,
       add_notice: {
         title: "",
-        content: "",
+        content: ""
       },
       del_notice: {
-        notice_id: "",
+        notice_id: ""
       },
-      api: "http://54.254.102.29:8080/api/v1",
+      api: "http://54.254.102.29:8080/api/v1"
     };
   },
   watch: {
@@ -206,7 +206,7 @@ export default {
           );
         }
       }
-    },
+    }
   },
   mounted() {
     this.getNotice();
@@ -246,7 +246,7 @@ export default {
           showCancelButton: true,
           showConfirmButton: false,
           denyButtonText: "응",
-          cancelButtonText: "아니!!",
+          cancelButtonText: "아니!!"
         })
         .then((result) => {
           if (result.isDenied) {
@@ -267,7 +267,7 @@ export default {
             "",
           showCancelButton: true,
           confirmButtonText: "추가",
-          cancelButtonText: "취소",
+          cancelButtonText: "취소"
         })
         .then((result) => {
           if (result.isConfirmed) {
@@ -282,8 +282,8 @@ export default {
             this.$swal.fire("추가했어!", "", "success");
           }
         });
-    },
-  },
+    }
+  }
 };
 </script>
 <style>

@@ -137,14 +137,11 @@
             </vs-option>
           </vs-select>
         </vs-row>
-          <br />
+        <br />
         <vs-row justify="center">
-          <vs-input
-            type="date"
-            v-model="birthDate"
-          />
+          <vs-input type="date" v-model="birthDate" />
         </vs-row>
-        <!-- birthdate  
+        <!-- birthdate
         <vs-row justify="center" :style="{'width': '300px'}">
           <v-menu
             ref="menu"
@@ -178,10 +175,10 @@
           </v-menu>
         </vs-row>
         -->
-                <!-- gender -->
+        <!-- gender -->
         <vs-row justify="center" style="margin-top: 20px">
           <vs-col w="2">
-            <h4 style="text-align: left;">성별</h4>
+            <h4 style="text-align: left">성별</h4>
           </vs-col>
           <vs-col w="2">
             <vs-radio v-model="gender" val="male"> 남자 </vs-radio>
@@ -209,12 +206,7 @@
             </vs-checkbox>
           </vs-row>
           <vs-row justify="center">
-            <textarea
-              readonly
-              :value="term.content"
-              cols="50"
-              rows="3"
-            />
+            <textarea readonly :value="term.content" cols="50" rows="3" />
           </vs-row>
         </div>
         <br />
@@ -223,7 +215,9 @@
         <vs-row justify="center">
           <vs-button block @click="register">
             <i class="bx bxs-paint-roll" style="margin-right: 5px"></i>
-            <p style="font-size: 17px; color: white; opacity: 1;">회원가입하기</p>
+            <p style="font-size: 17px; color: white; opacity: 1">
+              회원가입하기
+            </p>
           </vs-button>
         </vs-row>
       </template>
@@ -271,17 +265,17 @@ export default {
         {
           title: "DAMOA 서비스 이용약관 동의 (필수)",
           content: "DAMOA 서비스 약관",
-          code: "term01",
+          code: "term01"
         },
         {
           title: "개인정보 수집 및 이용 동의 (필수)",
           content: "개인정보 수집 및 이용 약관",
-          code: "term02",
-        },
+          code: "term02"
+        }
       ],
 
       // api
-      api: "/v1/members",
+      api: "/v1/members"
     };
   },
   watch: {
@@ -363,7 +357,7 @@ export default {
             });
         }
       }
-    },
+    }
   },
   methods: {
     checkTotalTerm() {
@@ -411,13 +405,13 @@ export default {
           birthDate: this.birthDate,
           job: this.job,
           serviceTerm: true,
-          privacyTerm: true,
+          privacyTerm: true
         })
         .then((response) => {
           if (response.data.status === 201) {
             alert("회원가입 성공!");
             this.$router.push({
-              name: "Home",
+              name: "Home"
             });
           }
           console.log(response);
@@ -426,48 +420,48 @@ export default {
           alert("회원가입 실패!");
           console.log(error);
         });
-    },
-  },
+    }
+  }
 };
 </script>
 <style>
-  textarea {
-    background-color: #F4F7F8;
-    border-radius: 15px;
-    padding: 20px 20px;
-    margin: 5px 20px;
-  }
-  .vs-card__title {
-    margin-top: 10px!important;
-  }
-  .vs-card__title h3 {
-    padding-top: 5px!important;
-    padding-bottom: 10px!important;
-    font-family: 'IBM Plex Sans KR', sans-serif!important;
-    font-weight: 600!important;
-    font-size: 22px!important;
-    color: #2C3333!important;
-  }
-  .vs-card {
-    width: 600px!important;
-    font-family: 'IBM Plex Sans KR', sans-serif!important;
-    font-weight: 600!important;
-    font-size: 26px!important;
-    max-width: 500px!important;
-  }
-  .content-inputs {
-    width: 300px!important;
-  }
-  .vs-input {
-    width: 300px!important;
-  }
-  .vs-select {
-    width: 300px!important;
-  }
-  .vs-select-content {
-    max-width: 300px!important;
-  }
-  .iconn {
-    color: #2C3333!important;
-  }
+textarea {
+  background-color: #f4f7f8;
+  border-radius: 15px;
+  padding: 20px 20px;
+  margin: 5px 20px;
+}
+.vs-card__title {
+  margin-top: 10px !important;
+}
+.vs-card__title h3 {
+  padding-top: 5px !important;
+  padding-bottom: 10px !important;
+  font-family: "IBM Plex Sans KR", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 22px !important;
+  color: #2c3333 !important;
+}
+.vs-card {
+  width: 600px !important;
+  font-family: "IBM Plex Sans KR", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 26px !important;
+  max-width: 500px !important;
+}
+.content-inputs {
+  width: 300px !important;
+}
+.vs-input {
+  width: 300px !important;
+}
+.vs-select {
+  width: 300px !important;
+}
+.vs-select-content {
+  max-width: 300px !important;
+}
+.iconn {
+  color: #2c3333 !important;
+}
 </style>

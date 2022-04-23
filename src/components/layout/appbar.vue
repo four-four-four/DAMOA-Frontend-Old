@@ -55,25 +55,25 @@
               v-if="!$vuetify.breakpoint.smAndUp"
             />
             <v-toolbar-title
-              style="cursor: pointer; font-family: 'yg-jalnan' !important;"
+              style="cursor: pointer; font-family: 'yg-jalnan' !important"
               class="font-weight-bold text-h5 primary--text"
-              :style="{'margin-right': '20px'}" 
+              :style="{ 'margin-right': '20px' }"
               @click="$router.push('/')"
             >
-            다모아
+              다모아
             </v-toolbar-title>
-            <div  v-if="$vuetify.breakpoint.smAndUp">
-            <v-btn 
-              v-for="(item, i) in barItems"
-              :key="i"
-              text
-              class="text-capitalize"
-              :to="item.to"
-              exact-active-class="accent--text"
-              exact
-              >{{ item.title }}</v-btn>
+            <div v-if="$vuetify.breakpoint.smAndUp">
+              <v-btn
+                v-for="(item, i) in barItems"
+                :key="i"
+                text
+                class="text-capitalize"
+                :to="item.to"
+                exact-active-class="accent--text"
+                exact
+                >{{ item.title }}</v-btn
+              >
             </div>
-
           </v-col>
 
           <v-col class="text-right" v-if="$vuetify.breakpoint.smAndUp">
@@ -101,43 +101,45 @@ export default {
     barItems: [
       {
         title: "오늘의 모아",
-        to: "/",
+        to: "/"
       },
       {
         title: "트렌드",
-        to: "/trend",
+        to: "/trend"
       }
     ],
     btnItems: [
       {
         title: "Sign In",
         to: "/user/signin"
-      },
-    ],
-  }),
+      }
+    ]
+  })
 };
 </script>
 <style>
-  .theme--light.v-btn--active:hover::before, .theme--light.v-btn--active::before {
-    opacity: 1;
-  }
-  .v-application .accent--text {
-    color: white!important;
-  }
-  .v-btn::before {
-    background-color: #2666CF;
-    border-radius: 14px;
-  }
-  .v-navigation-drawer__content {
-    background-color: #2C3333!important;
-  }
-  .v-navigation-drawer .v-list:not(.v-select-list) {
-    background-color: #2C3333!important;
-  }
-  @font-face {
-    font-family: 'yg-jalnan';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+.theme--light.v-btn--active:hover::before,
+.theme--light.v-btn--active::before {
+  opacity: 1;
+}
+.v-application .accent--text {
+  color: white !important;
+}
+.v-btn::before {
+  background-color: #2666cf;
+  border-radius: 14px;
+}
+.v-navigation-drawer__content {
+  background-color: #2c3333 !important;
+}
+.v-navigation-drawer .v-list:not(.v-select-list) {
+  background-color: #2c3333 !important;
+}
+@font-face {
+  font-family: "yg-jalnan";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 </style>

@@ -10,7 +10,7 @@ import EmailSignUp from "@/components/user/signup/child/EmailSignUp.vue";
 export default {
   name: "Signup",
   components: {
-    EmailSignUp,
+    EmailSignUp
   },
   data() {
     return {};
@@ -18,7 +18,7 @@ export default {
 
   mounted() {},
 
-  methods: {},
+  methods: {}
 };
 </script>
 

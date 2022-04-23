@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     jwtToken: null,
-    role: null,
+    role: null
   },
   mutations: {
     SET_JWT_TOKEN(state, payload) {
@@ -18,14 +18,14 @@ export default new Vuex.Store({
     SET_ROLE(state, payload) {
       state.role = payload;
       console.log(state.role);
-    },
+    }
   },
   actions: {
     signIn({ commit }, member) {
       return http
         .post(`/v1/members/login`, {
           email: member.email,
-          password: member.password,
+          password: member.password
         })
         .then(({ data }) => {
           commit("SET_JWT_TOKEN", data.data.jwtToken);
@@ -37,8 +37,8 @@ export default new Vuex.Store({
           console.log(error);
           return false;
         });
-    },
+    }
   },
   modules: {},
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState()]
 });

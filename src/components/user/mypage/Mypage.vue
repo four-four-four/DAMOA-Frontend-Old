@@ -110,7 +110,7 @@ export default {
       month: 0,
       day: 0,
       job: "",
-      jobs: [],
+      jobs: []
     };
   },
 
@@ -138,7 +138,7 @@ export default {
     },
     reset() {
       alert("초기화");
-    },
-  },
+    }
+  }
 };
 </script>
