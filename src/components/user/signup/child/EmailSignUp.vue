@@ -16,6 +16,7 @@
               <template #icon>
                 <i class="bx bx-user iconn"></i>
               </template>
+              <!-- TODO: 밑의 메세지는 focus 시 숨기기 -->
               <template v-if="validEmail == 1" #message-success>
                 사용 가능한 이메일입니다.
               </template>
@@ -261,9 +262,11 @@ export default {
       ],
 
       // api
-      api: '/v1/members'
+      api: '/v1/members',
+      serv: 'http://54.180.222.122:8080/api/v1' // api 요청 서버주소
     };
   },
+  // TODO: watch -> key event로 변경
   watch: {
     email() {
       const email = this.email;
@@ -271,13 +274,13 @@ export default {
       else if (!this.regExpEmail.test(email)) this.validEmail = -1;
       else {
         http
-          .get(`${this.api}/email/${email}/exists`)
+          .get(`${this.serv}/members/email-duplicate-check/${email}`)
           .then((response) => {
-            console.log(response);
-            if (response.data.status !== 204) this.validEmail = -2;
+            if (response.status !== 204) this.validEmail = -2;
             else this.validEmail = 1;
           })
           .catch((error) => {
+            // TODO: (개선 필요) xxx@naver.co -> 400 error
             console.log(error);
             alert(error);
             this.validEmail = 0;
